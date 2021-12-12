@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;1,100&display=swap');
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Roboto';
+}
+:root {
+    --primary: #03045E;
+    --secondary: #00B4D8;
+    --third: #0077B6;
+    --main: #0000;
+    --Second: #fff;
+    --font1:1.5rem;
+  }
+
+
+
+  header{
+      margin-left: 20px;
+      margin-right: 20px;
+  }
+
+.t-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.right-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+.title{
+    color: var(--third);
+}
+.left-nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.nav-menu ul {
+    display: flex;
+    align-items: center;
+    flex-direction: row; 
+    list-style: none;
+    
+}
+.nav-menu ul a{
+    
+    color: var(--third);
+    text-decoration: none;
+}
+
+.t-cont{
+    display: flex;
+    align-content: center;
+    justify-items: center;
+    
+}
+.tb-num{
+    display: flex;
+    flex-direction: row;
+}
+.tb-num,a,p,input{
+    color: var(--third);
+    margin: 0px 10px;
+}
+form .btn-search{
+    color: var(--Second);
+    background-color:var(--third);
+    border: none;
+    width: 30px;
+}
+form input{
+    border: 1px solid var(--secondary);
+}
+
+.navbar ul {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+    list-style: none;
+
+    background-color: var(--third);
+    width: 100%;
+    height: 80px;
+}
+.navbar li a{
+    color: var(--Second);
+    text-decoration: none;
+
+}
