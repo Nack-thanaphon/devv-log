@@ -1,8 +1,15 @@
-let modal=document.getElementById('login');
-
-
-window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "flex";
-    }
-  }
+// Initialize and add the map
+function initMap() {
+    // The location of Uluru
+    const uluru = { lat: 13.7948786, lng: 100.3194293 };
+    // The map, centered at Uluru
+    const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 12,
+        center: uluru,
+    });
+    // The marker, positioned at Uluru
+    const marker = new google.maps.Marker({
+        position: uluru,
+        map: map,
+    });
+}
