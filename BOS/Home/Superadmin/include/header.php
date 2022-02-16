@@ -38,6 +38,6 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./assets/vendor/chart.js/Chart.min.js"></script>
     <script src="./assets/js/demo/chart-area-demo.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 
 </head>

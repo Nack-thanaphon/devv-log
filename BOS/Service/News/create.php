@@ -1,9 +1,9 @@
 <?php
 
 header('Content-Type: application/json');
+header('Access-Control-Allow-Credentials: true');
+
 include "../../database/connect.php";
-
-
 
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {

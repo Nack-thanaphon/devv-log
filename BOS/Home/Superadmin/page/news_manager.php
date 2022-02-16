@@ -30,8 +30,6 @@ include "../../../BOS/Function/function.php"
                                             </button>
                                         </div>
                                     </div>
-
-
                                 </div>
                                 <div class="card-body">
                                     <table id="logs" class="table table-hover" width="100%">
@@ -96,8 +94,7 @@ include "../../../BOS/Function/function.php"
                                     <div class="form-group col-sm-6">
                                         <label for="customFile">รูปปกข่าว</label>
                                         <div class="custom-file" onchange="preview_image(event)">
-                                            <input type="file" class="custom-file-input" name="n_image" id="n_image"
-                                                required>
+                                            <input type="file" class="custom-file-input" name="n_image" id="n_image">
 
                                             <input id="n_imgname" type="hidden" name="n_imgname">
                                             <label class="custom-file-label" for="n_image">เลือกรูปภาพ</label>
