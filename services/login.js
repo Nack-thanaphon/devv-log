@@ -10,19 +10,19 @@ $(function() {
                 case (resp = "superadmin"):
                     toastr.success("เข้าสู่ระบบสำเร็จ");
                     setTimeout(() => {
-                        location.href = './BOS/Home/Superadmin/'
+                        location.href = './bos/Home/Superadmin/'
                     }, 800);
                     break
                 case (resp = "admin"):
                     toastr.success("เข้าสู่ระบบสำเร็จ");
                     setTimeout(() => {
-                        location.href = './BOS/Home/Admin/'
+                        location.href = './bos/Home/Admin/'
                     }, 800);
                     break
                 case (resp = "editer"):
                     toastr.success("เข้าสู่ระบบสำเร็จ");
                     setTimeout(() => {
-                        location.href = './BOS/Home/Editer/'
+                        location.href = './bos/Home/Editer/'
                     }, 800);
                     break
             };

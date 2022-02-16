@@ -1,5 +1,5 @@
 <?php
-include "../../../BOS/Function/function.php"
+include "../../../bos/Function/function.php"
 
 ?>
 

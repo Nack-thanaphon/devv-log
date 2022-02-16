@@ -2,9 +2,10 @@
 session_start();
 date_default_timezone_set('Asia/Bangkok');
 $servername = "localhost";
-$username = "root";
-$password = "";
-// h4x7PMDq
+$username = "mughorth_mugh";
+$password = "f6e64gq6";
+// mughorth_mugh
+// f6e64gq6
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=mughorth_database", $username, $password);
