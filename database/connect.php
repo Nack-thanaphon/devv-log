@@ -2,8 +2,8 @@
 session_start();
 date_default_timezone_set('Asia/Bangkok');
 $servername = "localhost";
-$username = "mughorth_mugh";
-$password = "f6e64gq6";
+$username = "root";
+$password = "";
 // mughorth_mugh
 // f6e64gq6
 
