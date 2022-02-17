@@ -30,16 +30,18 @@ if (empty($_SESSION['user'])) {
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                    <div class="card p-5">
+                        <!-- Page Heading -->
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                    class="fas fa-download fa-sm text-white-50"></i> ออกรายงาน Excel</a>
+                        </div>
 
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> ออกรายงาน Excel</a>
+                        <!-- Content Row -->
+
+                        <?php include "./page/dashboard.php"; ?>
                     </div>
-
-                    <!-- Content Row -->
-                    <?php include "./page/dashboard.php"; ?>
 
                     <!-- Content Row -->
 

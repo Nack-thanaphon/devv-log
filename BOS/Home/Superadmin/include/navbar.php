@@ -35,20 +35,20 @@
             <span>จัดการข่าวสาร</span>
         </a>
     </li>
-    <li class="nav-item ">
-        <a class="nav-link collapsed" href="#" aria-controls="collapseTwo">
-            <i class="fas fa-bookmark"></i>
-            <span>จัดการบทความ</span>
-        </a>
-    </li>
-    <li class="nav-item ">
-        <a class="nav-link collapsed" href="#" aria-controls="collapseTwo">
+    <li class="nav-item active ">
+        <a class="nav-link collapsed " href="./banner.php" aria-controls="collapseTwo">
             <i class="fab fa-font-awesome-flag"></i>
             <span>จัดการแบนเนอร์</span>
         </a>
     </li>
+    <li class="nav-item active ">
+        <a class="nav-link collapsed" href="./download.php" aria-controls="collapseTwo">
+            <i class="fas fa-bookmark"></i>
+            <span>จัดการดาวน์โหลด</span>
+        </a>
+    </li>
     <li class="nav-item ">
-        <a class="nav-link collapsed" href="#" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="./activity.php" aria-controls="collapseTwo">
             <i class="fas fa-calendar-day"></i>
             <span>จัดการกิจกรรม</span>
         </a>
@@ -65,45 +65,40 @@
         SuperAdmin-Panal
     </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
-
-
-    <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="#">
-            <i class="fab fa-researchgate"></i>
-            <span>จัดการฐานข้อมูลงานวิจัย</span></a>
-    </li>
-
-    <!-- Nav Item - Tables -->
-    <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="./gallary.php">
             <i class="fas fa-fw fa-table"></i>
             <span>คลังภาพ</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="./newsletter.php">
             <i class="fas fa-envelope-open-text"></i>
             <span>Newsletter</span></a>
     </li>
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <a class="nav-link" href="#">
             <i class="fas fa-id-card"></i>
             <span>จัดการผู้มาติดต่อ</span></a>
-    </li>
+    </li> -->
     <li class="nav-item active">
         <a class="nav-link" href="user.php">
             <i class="fas fa-users-cog"></i>
             <span>จัดการผู้ใช้งาน</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="./userguide.php">
             <i class="fas fa-book-open"></i>
             <span>คู่มือการใช้งาน</span></a>
     </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
+    <li class="nav-item">
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+            <span>ออกจากระบบ</span>
+        </a>
+    </li>
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

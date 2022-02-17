@@ -10,7 +10,7 @@ include "../../../bos/Function/function.php"
 
             </div>
             <div class="panel-footer bg-secondary py-2">
-                <a href="" class="small-box-footer py-3  text-white"> คลิกจัดการระบบ <i
+                <a href="././webstatic.php" class="small-box-footer py-3  text-white"> คลิกจัดการระบบ <i
                         class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
@@ -24,7 +24,7 @@ include "../../../bos/Function/function.php"
                 <h1>20</h1>
             </div>
             <div class="panel-footer bg-secondary py-2">
-                <a href="" class="small-box-footer py-3  text-white"> คลิกจัดการระบบ <i
+                <a href="././download.php" class="small-box-footer py-3  text-white"> คลิกจัดการระบบ <i
                         class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>

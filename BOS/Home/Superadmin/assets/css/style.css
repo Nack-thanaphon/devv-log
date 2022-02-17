@@ -1,3 +1,10 @@
+body,
+html {
+    height: 100%;
+    font-family: 'Kanit', cursive !important;
+    font-size: 0.95rem !important;
+}
+
 .panel-default {
     border-color: #dddddd;
 }
@@ -46,4 +53,8 @@
 .toggle-on.btn {
     padding-right: 19px;
     font-weight: 100 !important;
+}
+
+.modal {
+    position: fixed;
 }

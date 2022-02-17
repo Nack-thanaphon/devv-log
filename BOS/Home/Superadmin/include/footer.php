@@ -48,6 +48,7 @@
 
 <script src="../../Service/Api/news.js"></script>
 <script src="../../Service/Api/user.js"></script>
+<script src="../../Service/Api/banner.js"></script>
 
 
 

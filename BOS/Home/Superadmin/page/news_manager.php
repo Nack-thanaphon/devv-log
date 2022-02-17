@@ -70,29 +70,39 @@ include "../../../bos/Function/function.php"
                             <div class="card-body">
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
-                                        <label for="n_type">ประเภทข่าว</label>
+                                        <label for="n_type">
+                                            <h4>ประเภทข่าว</h4>
+                                        </label>
                                         <select class="custom-select mb-3" name="n_type">
                                             <option disabled>กรุณาเลือกหัวข้อข่าว</option>
                                             <?php echo  news_type($conn) ?>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-9">
-                                        <label for="n_name">ห้วข้อข่าว</label>
+                                        <label for="n_name">
+                                            <h4>ห้วข้อข่าว</h4>
+                                        </label>
                                         <input type="text" class="form-control" name="n_name" id="n_name"
-                                            placeholder="กรุณากรอกห้วข้อข่าว" required>
+                                            placeholder="ห้วข้อข่าว" required>
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label for="price">ชนิดข่าว</label>
+                                        <label for="price">
+                                            <h4>ชนิดข่าว</h4>
+                                        </label>
                                         <input type="text" class="form-control" name="slug" id="slug"
-                                            placeholder="Heathy,Knowledge,article" required>
+                                            placeholder="สุขภาพ | ประชุม | ประกาศ" required>
                                     </div>
                                     <div class="form-group col-md-9">
-                                        <label for="url">URL</label>
+                                        <label for="url">
+                                            <h4>ลิงค์ข่าว</h4>
+                                        </label>
                                         <input type="text" class="form-control" name="url" id="url"
-                                            placeholder="Url ข่าวเพิ่มเติม">
+                                            placeholder="ลิงค์ข่าวเพิ่มเติม">
                                     </div>
-                                    <div class="form-group col-sm-6">
-                                        <label for="customFile">รูปปกข่าว</label>
+                                    <div class="form-group col-sm-12">
+                                        <label for="customFile">
+                                            <h4>รูปปกข่าว</h4>
+                                        </label>
                                         <div class="custom-file" onchange="preview_image(event)">
                                             <input type="file" class="custom-file-input" name="n_image" id="n_image">
 
