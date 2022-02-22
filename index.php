@@ -4,6 +4,9 @@ include './template/include/header.php';
 ?>
 
 <body>
+    <?php
+
+    ?>
     <main>
         <div class="container-fluid">
             <div class="row">
@@ -18,6 +21,7 @@ include './template/include/header.php';
 
                         <h1 class="login-title">Log in</h1>
                         <?php include './template/include/message.php'; ?>
+
                         <form id="formlogin">
                             <div class="form-group">
                                 <label for="name" class="text-uppercase">User email</label>
@@ -31,9 +35,11 @@ include './template/include/header.php';
                                     placeholder="Enter Your Password" required>
                                 <!-- <small id="messagePass" class="text-danger">Password is mandatory.</small> -->
                             </div>
+                            <div class="g-recaptcha py-2 px-auto w-100" data-callback="makeaction"
+                                data-sitekey="6LcHsIYeAAAAAJSgjxLsmJnnO75l9omnnlLmtJ7s"></div>
                             <button id="login" class="btn btn-block login-btn">Login</button>
                         </form>
-                        <a href="#!" class="forgot-password-link">Forgot password?</a>
+                        <a href="forget-password.php" class="forgot-password-link">Forgot password?</a>
                     </div>
                 </div>
                 <div class="col-sm-6 px-0 d-none d-sm-block">
@@ -43,7 +49,12 @@ include './template/include/header.php';
             </div>
         </div>
     </main>
-
+    <script>
+    // กำหนดปุ่มเป็น disable ไว้ ต้องทำ reCHAPTCHA ก่อนจึงกดได้
+    function makeaction() {
+        document.getElementById('submit').disabled = false;
+    }
+    </script>
 
     </div>
 

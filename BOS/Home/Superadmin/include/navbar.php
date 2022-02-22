@@ -14,7 +14,7 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <li class="nav-item ">
         <a class="nav-link" href="./index.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
@@ -29,19 +29,19 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item active ">
+    <li class="nav-item  ">
         <a class="nav-link collapsed " href="./news.php" aria-controls="collapseTwo">
             <i class="fas fa-rss-square"></i>
             <span>จัดการข่าวสาร</span>
         </a>
     </li>
-    <li class="nav-item active ">
+    <li class="nav-item  ">
         <a class="nav-link collapsed " href="./banner.php" aria-controls="collapseTwo">
             <i class="fab fa-font-awesome-flag"></i>
             <span>จัดการแบนเนอร์</span>
         </a>
     </li>
-    <li class="nav-item active ">
+    <li class="nav-item ">
         <a class="nav-link collapsed" href="./download.php" aria-controls="collapseTwo">
             <i class="fas fa-bookmark"></i>
             <span>จัดการดาวน์โหลด</span>
@@ -80,7 +80,7 @@
             <i class="fas fa-id-card"></i>
             <span>จัดการผู้มาติดต่อ</span></a>
     </li> -->
-    <li class="nav-item active">
+    <li class="nav-item ">
         <a class="nav-link" href="user.php">
             <i class="fas fa-users-cog"></i>
             <span>จัดการผู้ใช้งาน</span></a>

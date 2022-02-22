@@ -1,11 +1,12 @@
     <?php
     header('content-type: application/json');
 
-    require_once '../database/connect.php';
-
     if (isset($_SESSION['user'])) {
         header("location:index.php");
     }
+    require_once '../database/connect.php';
+
+
     //Protect SQL INJECTION
     if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $stmt = $conn->prepare("SELECT * FROM tbl_user WHERE user_email = :user_email ");
@@ -20,7 +21,6 @@
                         'user_name' => $row['user_name'],
                         'user_password' => $row['user_password'],
                         'user_role_id' => $row['user_role_id'],
-
                     );
                     $role = $_SESSION['user']['user_role_id'];
                     //Redirecting user based on role
