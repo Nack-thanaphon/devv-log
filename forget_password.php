@@ -68,9 +68,17 @@ $(document).ready(function() {
         var dotpos = email.lastIndexOf(".com");
 
         if (email == "") {
-            alert("Please Enter Email Address");
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+            });
         } else if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= email.length) {
-            alert("Please Enter Valid Email Address !");
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+            });
         } else {
             $.ajax({
                 url: "send_email.php",

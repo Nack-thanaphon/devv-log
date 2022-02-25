@@ -3,7 +3,7 @@
 
 function count_total_user($conn)
 {
-    $query = "SELECT * FROM tbl_user WHERE user_status='active'";
+    $query = "SELECT * FROM tbl_user WHERE user_status='1'";
     $statement = $conn->prepare($query);
     $statement->execute();
     return $statement->rowCount();
@@ -54,15 +54,4 @@ function web_count_static($conn)
     $counter = $arr[0]['visitor_counter'];
 
     return $counter;
-}
-
-function upload_image()
-{
-    if (isset($_FILES["n_image"])) {
-        $extension = explode('.', $_FILES['n_image']);
-        $new_name = rand() . '.' . $extension[1];
-        $destination = './upload/' . $new_name;
-        move_uploaded_file($_FILES['n_image'], $destination);
-        return $new_name;
-    }
 }

@@ -51,7 +51,7 @@ html {
 }
 
 .toggle-on.btn {
-    padding-right: 19px;
+    padding: 5px !important;
     font-weight: 100 !important;
 }
 

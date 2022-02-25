@@ -1,7 +1,7 @@
 <?php
 require_once './database/connect.php';
 
-// Get user enter email via $.ajax() method
+
 if (isset($_POST['uemail'])) {
 	$email = strip_tags($_POST["uemail"]);
 
@@ -17,23 +17,22 @@ if (isset($_POST['uemail'])) {
 			$dbtoken = $row["token"];
 
 			// They can click on this link to reset the password with the token. 
-			$reset_link = "Hi, $dbusername. Please Click here to reset your password
-			
-			http://localhost/reset_password.php?token=$dbtoken";
-			https: //www.info-mugh.com/reset_password.php?token=$dbtoken";
+			$reset_link = "Hi, $dbusername. Click here to reset your password
+			http://localhost/info-mugh/reset_password.php?token=$dbtoken";
 
-			// Send email code
 			require_once('smtp/PHPMailerAutoload.php');
 
-			$mail = new phpmailer(true);
+			$mail = new PHPMailer();
+			// SMTP Settings
 			$mail->isSMTP();
 			$mail->Host = "smtp.gmail.com";
-			$mail->Port = 587;
-			$mail->SMTPSecure = "tls";
 			$mail->SMTPAuth = true;
-			$mail->Username = "bemyspecialperson@gmail.com"; //Enter your gmail id
-			$mail->Password = "F6e64gq6"; //Enter your gmail password
-			$mail->SetFrom("bemyspecialperson@gmail.com"); //Enter your gmail id
+			$mail->Username = "bemyspecialperson@gmail.com"; // enter your email address
+			$mail->Password = "F6e64gq6"; // enter your password
+			$mail->Port = 465;
+			$mail->SMTPSecure = "ssl";
+
+			$mail->SetFrom($email); //Enter your gmail id
 			$mail->addAddress($email);
 			$mail->IsHTML(true);
 			$mail->Subject = "Reset Password";
@@ -44,17 +43,18 @@ if (isset($_POST['uemail'])) {
 				'allow_self_signed' => false
 			));
 			if ($mail->send()) {
-				$_SESSION["successMsg"] = "กรุณาเช็คที่อีเมลล์ของคุณ";
+				$_SESSION["successMsg"] = "email send check your mail box";
 				header("location:index.php");
 			} else {
 				echo "Mailer Error: " . $mail->ErrorInfo;
 			}
 		} else {
-			$_SESSION["errorMsg"] = "ไม่มีอีเมลล์นี้ในระบบ";
+			$_SESSION["errorMsg"] = "email not found";
+			echo $email;
 			header("location:index.php");
 		}
 	} else {
-		$_SESSION["errorMsg"] = "อีเมลล์ไม่ถูกต้อง";
+		$_SESSION["errorMsg"] = "wrong email";
 		header("location:index.php");
 	}
 }

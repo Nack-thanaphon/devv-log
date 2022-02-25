@@ -22,24 +22,30 @@ include './template/include/header.php';
                         <h1 class="login-title">Log in</h1>
                         <?php include './template/include/message.php'; ?>
 
-                        <form id="formlogin">
+                        <form id="formlogin" method="POST">
                             <div class="form-group">
                                 <label for="name" class="text-uppercase">User email</label>
-                                <input type="text" name="user_email" id="name" class="form-control"
-                                    placeholder="Enter Your Email ID" required>
+                                <input type="text" name="user_email" id="useremail" class="form-control"
+                                    placeholder="Enter Your Email ID">
                                 <!-- <small id="messageName" class="text-danger">Your name is mandatory.</small> -->
                             </div>
                             <div class="form-group mb-4">
                                 <label for="pass" class="text-uppercase">Password</label>
-                                <input type="password" name="user_password" id="pass" class="form-control"
-                                    placeholder="Enter Your Password" required>
+                                <input type="password" name="user_password" id="password" class="form-control"
+                                    placeholder="Enter Your Password">
                                 <!-- <small id="messagePass" class="text-danger">Password is mandatory.</small> -->
                             </div>
-                            <div class="g-recaptcha py-2 px-auto w-100" data-callback="makeaction"
-                                data-sitekey="6LcHsIYeAAAAAJSgjxLsmJnnO75l9omnnlLmtJ7s"></div>
-                            <button id="login" class="btn btn-block login-btn">Login</button>
+                            <div class="col-12 mx-auto py-3 p-0 m-0 block">
+                                <div class="g-recaptcha" height="100%" width="100%"
+                                    data-sitekey="6LfGopUeAAAAAMKPZAQyp82OkqUbj6AMJOb2yvrI" data-callback="makeaction">
+                                </div>
+                            </div>
+
+
+
+                            <button id="login" type="submit" class="btn btn-block login-btn" name="login">Login</button>
                         </form>
-                        <a href="forget-password.php" class="forgot-password-link">Forgot password?</a>
+                        <a href="forget_password.php" class="forgot-password-link">Forgot password?</a>
                     </div>
                 </div>
                 <div class="col-sm-6 px-0 d-none d-sm-block">
@@ -49,14 +55,10 @@ include './template/include/header.php';
             </div>
         </div>
     </main>
-    <script>
-    // กำหนดปุ่มเป็น disable ไว้ ต้องทำ reCHAPTCHA ก่อนจึงกดได้
-    function makeaction() {
-        document.getElementById('submit').disabled = false;
-    }
-    </script>
+
 
     </div>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
     <?php
 
