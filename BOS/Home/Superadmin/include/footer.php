@@ -45,10 +45,10 @@
 
 <!-- Custom scripts for all pages-->
 <script src="./assets/js/sb-admin-2.min.js"></script>
-
+<!-- 
 <script src="../../Service/Api/news.js"></script>
 <script src="../../Service/Api/user.js"></script>
-<script src="../../Service/Api/banner.js"></script>
+<script src="../../Service/Api/banner.js"></script> -->
 
 
 

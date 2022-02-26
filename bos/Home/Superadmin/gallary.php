@@ -28,7 +28,7 @@ if (empty($_SESSION['user'])) {
                     </ul>
 
                 </nav>
-                <?php include "./page/download_manager.php" ?>
+                <?php include "./page/gallary_manager.php" ?>
             </div>
         </div>
     </div>

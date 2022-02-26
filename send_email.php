@@ -1,9 +1,11 @@
 <?php
 require_once './database/connect.php';
 
+use PHPMailer\PHPMailer\PHPMailer;
+
 
 if (isset($_POST['uemail'])) {
-	$email = strip_tags($_POST["uemail"]);
+	$email = ($_POST["uemail"]);
 
 	// Select email from the user table 
 	$select_stmt = $conn->prepare("SELECT * FROM tbl_user WHERE user_email=:user_email");
@@ -18,19 +20,25 @@ if (isset($_POST['uemail'])) {
 
 			// They can click on this link to reset the password with the token. 
 			$reset_link = "Hi, $dbusername. Click here to reset your password
-			http://localhost/info-mugh/reset_password.php?token=$dbtoken";
+			https://dev-nack.com/reset_password.php?token=$dbtoken";
 
-			require_once('smtp/PHPMailerAutoload.php');
+			require_once "PHPMailer/PHPMailer.php";
+			require_once "PHPMailer/SMTP.php";
+			require_once "PHPMailer/Exception.php";
 
 			$mail = new PHPMailer();
+
 			// SMTP Settings
 			$mail->isSMTP();
-			$mail->Host = "smtp.gmail.com";
+			$mail->Host = 'smtp.gmail.com';
+
+			$mail->Mailer = "smtp";
 			$mail->SMTPAuth = true;
-			$mail->Username = "bemyspecialperson@gmail.com"; // enter your email address
-			$mail->Password = "F6e64gq6"; // enter your password
-			$mail->Port = 465;
-			$mail->SMTPSecure = "ssl";
+			$mail->Username = "mugh.mahidol@gmail.com"; // enter your email address
+			$mail->Password = "aihd1982"; // enter your password
+			$mail->Port = 587;
+			$mail->SMTPSecure = 'tls'; // secure transfer enabled REQUIRED for GMail
+			$mail->SMTPAutoTLS = false;
 
 			$mail->SetFrom($email); //Enter your gmail id
 			$mail->addAddress($email);
@@ -47,14 +55,12 @@ if (isset($_POST['uemail'])) {
 				header("location:index.php");
 			} else {
 				echo "Mailer Error: " . $mail->ErrorInfo;
+				header("location:index.php");
 			}
 		} else {
 			$_SESSION["errorMsg"] = "email not found";
-			echo $email;
-			header("location:index.php");
 		}
 	} else {
 		$_SESSION["errorMsg"] = "wrong email";
-		header("location:index.php");
 	}
 }
