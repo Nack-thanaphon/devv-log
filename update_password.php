@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	))) {
 
 		// Using session method send password updated successfully message to reset_password.php page  
-		$_SESSION["updateMsg"] = "Password Updated Successfully.... Please Login";
-		header("location:reset_password.php");
+		$_SESSION["updateMsg"] = "อัพเดตรหัสผ่านเรียบร้อย";
+		header("location:./");
 	}
 }

@@ -1,4 +1,5 @@
 <a id="button"><i class="fas fa-chevron-up"></i></a>
+<script src="services/forget_password.js"></script>
 <script src="services/login.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"

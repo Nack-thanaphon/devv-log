@@ -7,7 +7,7 @@ include "../../database/connect.php";
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $id = $_POST['id'];
-    $query = "DELETE  FROM `tbl_news` WHERE  n_id = '" . $id . "' ";
+    $query = "DELETE  FROM `tbl_banner` WHERE  b_id = '" . $id . "' ";
     $stmt = $conn->prepare($query);
     $stmt->execute();
 

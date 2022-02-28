@@ -149,7 +149,6 @@ $(function() { // เรียกใช้งาน datatable
 
 $(document).on('submit', '#crete_user', function(event) {
     event.preventDefault();
-
     $.ajax({
         url: "../../Service/User/create.php",
         method: "POST",

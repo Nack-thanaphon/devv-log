@@ -5,7 +5,7 @@ include "../../database/connect.php";
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
     if (isset($_GET["id"])) {
-        $stmt =  $conn->prepare("SELECT * FROM tbl_news WHERE n_id = '" . $_GET["id"] . "'");
+        $stmt =  $conn->prepare("SELECT * FROM tbl_banner WHERE b_id = '" . $_GET["id"] . "'");
         $stmt->execute();
         $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -14,27 +14,17 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     }
 } else if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
+    //ประกาศตัวแปรรับค่าจากฟอร์ม
+    $id = $_POST['eb_id'];
+    $name = $_POST['eb_title'];
+    $detail = $_POST['eb_detail'];
+    $link = $_POST['eb_link'];
+    $by = $_POST['eb_by'];
+    $date = $_POST['eb_date'];
 
-    $id = $_POST['id'];
-    $name = $_POST['name'];
-    $type = $_POST['type'];
-    $url = $_POST['url'];
-    $image = $_POST['image'];
-    $slug = $_POST['slug'];
-    $detail = $_POST['detail'];
-
-
-
-
-    $query = " UPDATE tbl_news SET `n_name` = '" . $name . "', `n_type` = '" . $type . "', 
-    `url` = '" . $url . "', 
-    `slug` = '" . $slug . "', 
-    `n_image` = '" . $image . "', 
-    `n_detail` = '" . $detail . "'
-  
-
-    
-    WHERE n_id = '" . $id . "' ";
+    $query = " UPDATE tbl_banner SET `b_title` = '" . $name . "', `b_detail` = '" . $detail . "', 
+        `b_link` = '" . $link . "' ,`b_by` = '" . $by . "',`b_date` = '" . $date . "'
+        WHERE b_id = '" . $id . "' ";
     $stmt = $conn->prepare($query);
     $stmt->execute();
 

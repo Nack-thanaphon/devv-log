@@ -33,5 +33,6 @@ if (empty($_SESSION['user'])) {
         </div>
     </div>
 
+    <?php include "./include/footer.php"; ?>
 
 </body>

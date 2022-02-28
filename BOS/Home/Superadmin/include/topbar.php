@@ -24,8 +24,11 @@
 <!-- Nav Item - Messages -->
 <li class="nav-item dropdown no-arrow mx-1">
     <a href="https://mugh.or.th" target="_blank" class="nav-link dropdown-toggle">
-        <i class="fas fa-home fa-fw"></i>
-        กลับสู่หน้าเว็บไซต์</a>
+
+        <i class="fas fa-home fa-fw mx-auto "></i>
+        <span class="pl-2 p-0 m-0 d-none d-sm-block">กลับสู่หน้าเว็บไซต์</span>
+
+    </a>
 </li>
 <!-- <li class="nav-item dropdown no-arrow mx-1">
     <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
@@ -38,7 +41,7 @@
 <div class="topbar-divider d-none d-sm-block"></div>
 
 <!-- Nav Item - User Information -->
-<li class="nav-item dropdown no-arrow">
+<li class="nav-item dropdown no-arrow align-self-left">
     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
         <div class="row p-0 m-0">
@@ -49,19 +52,22 @@
             </div>
             <div class="col-12 p-0 m-0">
                 <span class="badge badge-pill badge-primary">
-                    <?php echo $_SESSION['user']['user_name'] ?>
+                    <?php echo $_SESSION['user']['full_name'] ?>
                 </span>
             </div>
         </div>
-        <img class="img-profile rounded-circle" src="assets/img/undraw_profile.svg">
+        <div class="col-12 px-3 p-0 m-0">
+
+            <img class="img-profile rounded-circle" src="assets/img/undraw_profile.svg">
+        </div>
     </a>
     <!-- Dropdown - User Information -->
     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-        <a class="dropdown-item" href="#">
+        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
             Profile
         </a>
-        <a class="dropdown-item" href="#">
+        <a class="dropdown-item" href="./user_profile.php">
             <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
             Settings
         </a>

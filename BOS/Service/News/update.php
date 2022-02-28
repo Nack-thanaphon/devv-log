@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     $image = $_POST['image'];
     $slug = $_POST['slug'];
     $detail = $_POST['detail'];
+    $date = $_POST['date'];
 
 
 
@@ -31,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     `slug` = '" . $slug . "', 
     `n_image` = '" . $image . "', 
     `n_detail` = '" . $detail . "'
+    `n_date` = '" . $date . "'
   
 
     

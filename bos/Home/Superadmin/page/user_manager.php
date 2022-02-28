@@ -13,7 +13,7 @@ include "../../../bos/Function/function.php"
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header border-0 pt-4 bg-primary text-white">
+                                <div class="card-header  border-left-warning text-warning ">
 
                                     <div class="row  mx-auto">
                                         <div class="col-lg-10 col-md-10 col-sm-8 col-xs-6 ">

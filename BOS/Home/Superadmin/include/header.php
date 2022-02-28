@@ -12,9 +12,12 @@
     <title>MUGH | Dashboard</title>
 
     <!-- css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet"
+        type="text/css" />
     <link href="./assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="./assets/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="./assets/css/style.css" rel="stylesheet">
+
     <link rel="stylesheet" href="../../Plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="../../Plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <link rel="stylesheet" href="../../Plugins/bootstrap-toggle/bootstrap-toggle.min.css">
@@ -38,6 +41,11 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./assets/vendor/chart.js/Chart.min.js"></script>
     <script src="./assets/js/demo/chart-area-demo.js"></script>
+
+
+
+
+
 
 
 </head>

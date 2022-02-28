@@ -58,3 +58,7 @@ html {
 .modal {
     position: fixed;
 }
+
+#datepicker>span:hover {
+    cursor: pointer;
+}

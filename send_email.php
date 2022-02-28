@@ -51,14 +51,14 @@ if (isset($_POST['uemail'])) {
 				'allow_self_signed' => false
 			));
 			if ($mail->send()) {
-				$_SESSION["successMsg"] = "email send check your mail box";
+				$_SESSION["successMsg"] = "กรุณาตรวจสอบอีเมลล์ของคุณ";
 				header("location:index.php");
 			} else {
 				echo "Mailer Error: " . $mail->ErrorInfo;
 				header("location:index.php");
 			}
 		} else {
-			$_SESSION["errorMsg"] = "email not found";
+			$_SESSION["errorMsg"] = "ไม่มีอีเมลล์นี้ในระบบ";
 		}
 	} else {
 		$_SESSION["errorMsg"] = "wrong email";

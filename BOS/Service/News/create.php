@@ -7,9 +7,9 @@ include "../../database/connect.php";
 
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-
-    $statement = $conn->prepare("INSERT INTO tbl_news (n_name, n_type,n_detail,n_image, url,slug,n_status,n_views) 
-    VALUES (:n_name, :n_type, :n_detail,:n_image, :url,:slug,:n_status,:n_views)");
+    $now = date("Y-m-d H:i:s");
+    $statement = $conn->prepare("INSERT INTO tbl_news (n_name, n_type,n_detail,n_image, url,slug,n_status,n_views,n_date,create_at) 
+    VALUES (:n_name, :n_type, :n_detail,:n_image, :url,:slug,:n_status,:n_views,:n_date,:create_at)");
     $result = $statement->execute(
         array(
             ':n_name' => $_POST["n_name"],
@@ -17,7 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             ':n_detail' => $_POST["n_detail"],
             ':url' => $_POST["url"],
             ':slug' => $_POST["slug"],
+            ':n_date' => $_POST["n_date"],
             ':n_image'  => $_POST['n_imgname'],
+            ':create_at'  => $now,
             ':n_status' => '1',
             ':n_views' => '0'
         )

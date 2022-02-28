@@ -43,13 +43,12 @@
 <!-- Core plugin JavaScript-->
 <script src="./assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-<!-- Custom scripts for all pages-->
-<script src="./assets/js/sb-admin-2.min.js"></script>
-<!-- 
 <script src="../../Service/Api/news.js"></script>
 <script src="../../Service/Api/user.js"></script>
-<script src="../../Service/Api/banner.js"></script> -->
-
+<script src="../../Service/Api/banner.js"></script>
+<script src="../../Service/Api/file.js"></script>
+<script src="../../Service/Api/file_type.js"></script>
+<script src="../../Service/Api/file_group.js"></script>
 
 
 <!-- Page level plugins -->
@@ -61,9 +60,18 @@
 <script src="../../Plugins/bootstrap-toggle/bootstrap-toggle.min.js"></script>
 <script src="../../Plugins/toastr/toastr.min.js"></script>
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
 <!-- datatables -->
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <script src="../../Plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../../Plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../Plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../Plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
+
+<!-- Custom scripts for all pages-->
+<script src="./assets/js/sb-admin-2.min.js"></script>
+<script src="./assets/js/main.js"></script>
+<script src="./assets/js/demo/chart-area-demo.js"></script>
+<script src="./assets/js/demo/chart-pie-demo.js"></script>

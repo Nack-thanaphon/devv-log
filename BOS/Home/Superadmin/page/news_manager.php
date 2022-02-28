@@ -13,7 +13,7 @@ include "../../../bos/Function/function.php"
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header border-0 pt-4 bg-primary text-white">
+                                <div class="card-header  border-left-success text-success ">
 
                                     <div class="row  mx-auto">
                                         <div class="col-lg-10 col-md-10 col-sm-8 col-xs-6 ">
@@ -66,7 +66,7 @@ include "../../../bos/Function/function.php"
                             </h4>
                             <button type="button" class="close  text-white" data-dismiss="modal">&times;</button>
                         </div>
-                        <form id="formData" enctype="multipart/form-data">
+                        <form id="formData">
                             <div class="card-body">
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
@@ -103,9 +103,8 @@ include "../../../bos/Function/function.php"
                                         <label for="customFile">
                                             <h4>รูปปกข่าว</h4>
                                         </label>
-                                        <div class="custom-file" onchange="preview_image(event)">
+                                        <div class="custom-file" onchange="preview_image(banner)">
                                             <input type="file" class="custom-file-input" name="n_image" id="n_image">
-
                                             <input id="n_imgname" type="hidden" name="n_imgname">
                                             <label class="custom-file-label" for="n_image">เลือกรูปภาพ</label>
 
@@ -123,6 +122,32 @@ include "../../../bos/Function/function.php"
                                         <textarea id="detail" class="textarea" name="n_detail" value="dfasfasfasfs"
                                             placeholder="Place some text here" required>
                                             </textarea>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="url">เขียนข่าวโดย</label>
+                                                <input type="text" class="form-control" name="g_address" id="g_address"
+                                                    placeholder="Admin A">
+                                            </div>
+
+                                            <div class="col">
+                                                <label for="url">วันเดือนปี</label>
+                                                <div class="input-group">
+                                                    <div id="datepicker" class="input-group date">
+                                                        <input class="form-control" type="text" id="n_date"
+                                                            name="n_date" readonly />
+                                                        <div class="input-group-append">
+                                                            <button class="btn btn-outline-secondary"
+                                                                type="button"><span class="input-group-addon">
+                                                                    <i class="fa fa-calendar"></i>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

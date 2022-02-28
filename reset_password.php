@@ -3,282 +3,51 @@ require_once './database/connect.php';
 include './template/include/header.php';
 ?>
 
+<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 login-section-wrapper">
+                <div class="brand-wrapper">
 
+                    <h1>MUGH</h1>
+                    <p>Mahidol University Global Health</p>
 
-<body>
-
-
-    <div class="wrapper">
-
-        <div class="container">
-
-            <div class="col-lg-12">
-
-                <div id="msg">
-                    <?php
-                    if (isset($_SESSION["updateMsg"])) {
-                    ?>
-                    <div class="alert alert-success">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <strong><?php echo $_SESSION["updateMsg"];
-                                    unset($_SESSION["updateMsg"]); ?></strong>
-                    </div>
-                    <?php
-                    }
-                    ?>
                 </div>
-                <center>
-                    <h3>Create New Password</h3>
-                </center>
-                <form method="post" class="form-horizontal">
+                <div class="login-wrapper my-auto">
 
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">Password</label>
-                        <div class="col-sm-6">
-                            <input type="password" id="txt_password" class="form-control" placeholder="new passowrd" />
+                    <h1 class="login-title">Reset Password</h1>
+                    <?php include './template/include/message.php'; ?>
+
+                    <form method="post" class="form-horizontal">
+                        <div class="form-group mb-4">
+                            <label for="pass" class="text-uppercase">กรุณากรอกรหัสผ่าน</label>
+                            <input type="password" id="txt_password" class="form-control"
+                                placeholder="Enter Your Password">
+                            <!-- <small id="messagePass" class="text-danger">Password is mandatory.</small> -->
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">Confirm Password</label>
-                        <div class="col-sm-6">
+                        <div class="form-group mb-4">
+                            <label for="pass" class="text-uppercase">กรุณากรอกรหัสผ่านอีกครั้ง</label>
                             <input type="password" id="txt_cpassword" class="form-control"
-                                placeholder="confirm passowrd" />
+                                placeholder="Enter Your Re-Password">
+                            <!-- <small id="messagePass" class="text-danger">Password is mandatory.</small> -->
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="col-sm-offset-3 col-sm-9 m-t-15">
-                            <input type="submit" id="btn_update" class="btn btn-primary" value="Update">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-sm-offset-3 col-sm-9 m-t-15">
-                            You have a account login here? <a href="index.php">
-                                <p class="text-info">Login Account</p>
-                            </a>
-                        </div>
-                    </div>
-
-                    <input type="hidden" value="<?php echo $_GET["token"]; ?>" id="txt_token" />
-
-                </form>
-
+                        <button id="btn_update" type="submit" class="btn btn-block login-btn" value="Update">Change
+                            Password</button>
+                        <input type="hidden" value="<?php echo $_GET["token"]; ?>" id="txt_token" />
+                    </form>
+                    <a href="./" class="forgot-password-link">
+                        < ย้อนกลับ</a>
+                </div>
             </div>
-
+            <div class="col-sm-6 px-0 d-none d-sm-block">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                    alt="login image" class="login-img">
+            </div>
         </div>
-
     </div>
+</main>
 
-</body>
-
-<script type="text/javascript">
-$(document).ready(function() {
-    $(document).on("click", "#btn_update", function(e) {
-
-        var password = $("#txt_password").val();
-        var cpassword = $("#txt_cpassword").val();
-        var token = $("#txt_token").val();
-
-        if (password == "") {
-            alert("Please Enter New Password ! ");
-        } else if (password.length < 6) {
-            alert("Please Enter New Password Must Six Character ! ");
-        } else if (cpassword == "") {
-            alert("Please Enter Confirm Password !");
-        } else if (password != cpassword) {
-            alert("Password Not Match ! ");
-        } else {
-            $.ajax({
-                url: "update_password.php",
-                method: "post",
-                data: {
-                    utoken: $("#txt_token").val(),
-                    upassword: MD5($("#txt_password").val()),
-                },
-                success: function(response) {
-                    $("#msg").html(response);
-                }
-            });
-        }
-    });
-});
-
-MD5 = function(e) {
-    function h(a, b) {
-        var c, d, e, f, g;
-        e = a & 2147483648;
-        f = b & 2147483648;
-        c = a & 1073741824;
-        d = b & 1073741824;
-        g = (a & 1073741823) + (b & 1073741823);
-        return c & d ?
-            g ^ 2147483648 ^ e ^ f :
-            c | d ?
-            g & 1073741824 ?
-            g ^ 3221225472 ^ e ^ f :
-            g ^ 1073741824 ^ e ^ f :
-            g ^ e ^ f;
-    }
-
-    function k(a, b, c, d, e, f, g) {
-        a = h(a, h(h((b & c) | (~b & d), e), g));
-        return h((a << f) | (a >>> (32 - f)), b);
-    }
-
-    function l(a, b, c, d, e, f, g) {
-        a = h(a, h(h((b & d) | (c & ~d), e), g));
-        return h((a << f) | (a >>> (32 - f)), b);
-    }
-
-    function m(a, b, d, c, e, f, g) {
-        a = h(a, h(h(b ^ d ^ c, e), g));
-        return h((a << f) | (a >>> (32 - f)), b);
-    }
-
-    function n(a, b, d, c, e, f, g) {
-        a = h(a, h(h(d ^ (b | ~c), e), g));
-        return h((a << f) | (a >>> (32 - f)), b);
-    }
-
-    function p(a) {
-        var b = "",
-            d = "",
-            c;
-        for (c = 0; 3 >= c; c++)
-            (d = (a >>> (8 * c)) & 255),
-            (d = "0" + d.toString(16)),
-            (b += d.substr(d.length - 2, 2));
-        return b;
-    }
-    var f = [],
-        q,
-        r,
-        s,
-        t,
-        a,
-        b,
-        c,
-        d;
-    e = (function(a) {
-        a = a.replace(/\r\n/g, "\n");
-        for (var b = "", d = 0; d < a.length; d++) {
-            var c = a.charCodeAt(d);
-            128 > c ?
-                (b += String.fromCharCode(c)) :
-                (127 < c && 2048 > c ?
-                    (b += String.fromCharCode((c >> 6) | 192)) :
-                    ((b += String.fromCharCode((c >> 12) | 224)),
-                        (b += String.fromCharCode(((c >> 6) & 63) | 128))),
-                    (b += String.fromCharCode((c & 63) | 128)));
-        }
-        return b;
-    })(e);
-    f = (function(b) {
-        var a,
-            c = b.length;
-        a = c + 8;
-        for (
-            var d = 16 * ((a - (a % 64)) / 64 + 1),
-                e = Array(d - 1),
-                f = 0,
-                g = 0; g < c;
-
-        )
-            (a = (g - (g % 4)) / 4),
-            (f = (g % 4) * 8),
-            (e[a] |= b.charCodeAt(g) << f),
-            g++;
-        a = (g - (g % 4)) / 4;
-        e[a] |= 128 << ((g % 4) * 8);
-        e[d - 2] = c << 3;
-        e[d - 1] = c >>> 29;
-        return e;
-    })(e);
-    a = 1732584193;
-    b = 4023233417;
-    c = 2562383102;
-    d = 271733878;
-    for (e = 0; e < f.length; e += 16)
-        (q = a),
-        (r = b),
-        (s = c),
-        (t = d),
-        (a = k(a, b, c, d, f[e + 0], 7, 3614090360)),
-        (d = k(d, a, b, c, f[e + 1], 12, 3905402710)),
-        (c = k(c, d, a, b, f[e + 2], 17, 606105819)),
-        (b = k(b, c, d, a, f[e + 3], 22, 3250441966)),
-        (a = k(a, b, c, d, f[e + 4], 7, 4118548399)),
-        (d = k(d, a, b, c, f[e + 5], 12, 1200080426)),
-        (c = k(c, d, a, b, f[e + 6], 17, 2821735955)),
-        (b = k(b, c, d, a, f[e + 7], 22, 4249261313)),
-        (a = k(a, b, c, d, f[e + 8], 7, 1770035416)),
-        (d = k(d, a, b, c, f[e + 9], 12, 2336552879)),
-        (c = k(c, d, a, b, f[e + 10], 17, 4294925233)),
-        (b = k(b, c, d, a, f[e + 11], 22, 2304563134)),
-        (a = k(a, b, c, d, f[e + 12], 7, 1804603682)),
-        (d = k(d, a, b, c, f[e + 13], 12, 4254626195)),
-        (c = k(c, d, a, b, f[e + 14], 17, 2792965006)),
-        (b = k(b, c, d, a, f[e + 15], 22, 1236535329)),
-        (a = l(a, b, c, d, f[e + 1], 5, 4129170786)),
-        (d = l(d, a, b, c, f[e + 6], 9, 3225465664)),
-        (c = l(c, d, a, b, f[e + 11], 14, 643717713)),
-        (b = l(b, c, d, a, f[e + 0], 20, 3921069994)),
-        (a = l(a, b, c, d, f[e + 5], 5, 3593408605)),
-        (d = l(d, a, b, c, f[e + 10], 9, 38016083)),
-        (c = l(c, d, a, b, f[e + 15], 14, 3634488961)),
-        (b = l(b, c, d, a, f[e + 4], 20, 3889429448)),
-        (a = l(a, b, c, d, f[e + 9], 5, 568446438)),
-        (d = l(d, a, b, c, f[e + 14], 9, 3275163606)),
-        (c = l(c, d, a, b, f[e + 3], 14, 4107603335)),
-        (b = l(b, c, d, a, f[e + 8], 20, 1163531501)),
-        (a = l(a, b, c, d, f[e + 13], 5, 2850285829)),
-        (d = l(d, a, b, c, f[e + 2], 9, 4243563512)),
-        (c = l(c, d, a, b, f[e + 7], 14, 1735328473)),
-        (b = l(b, c, d, a, f[e + 12], 20, 2368359562)),
-        (a = m(a, b, c, d, f[e + 5], 4, 4294588738)),
-        (d = m(d, a, b, c, f[e + 8], 11, 2272392833)),
-        (c = m(c, d, a, b, f[e + 11], 16, 1839030562)),
-        (b = m(b, c, d, a, f[e + 14], 23, 4259657740)),
-        (a = m(a, b, c, d, f[e + 1], 4, 2763975236)),
-        (d = m(d, a, b, c, f[e + 4], 11, 1272893353)),
-        (c = m(c, d, a, b, f[e + 7], 16, 4139469664)),
-        (b = m(b, c, d, a, f[e + 10], 23, 3200236656)),
-        (a = m(a, b, c, d, f[e + 13], 4, 681279174)),
-        (d = m(d, a, b, c, f[e + 0], 11, 3936430074)),
-        (c = m(c, d, a, b, f[e + 3], 16, 3572445317)),
-        (b = m(b, c, d, a, f[e + 6], 23, 76029189)),
-        (a = m(a, b, c, d, f[e + 9], 4, 3654602809)),
-        (d = m(d, a, b, c, f[e + 12], 11, 3873151461)),
-        (c = m(c, d, a, b, f[e + 15], 16, 530742520)),
-        (b = m(b, c, d, a, f[e + 2], 23, 3299628645)),
-        (a = n(a, b, c, d, f[e + 0], 6, 4096336452)),
-        (d = n(d, a, b, c, f[e + 7], 10, 1126891415)),
-        (c = n(c, d, a, b, f[e + 14], 15, 2878612391)),
-        (b = n(b, c, d, a, f[e + 5], 21, 4237533241)),
-        (a = n(a, b, c, d, f[e + 12], 6, 1700485571)),
-        (d = n(d, a, b, c, f[e + 3], 10, 2399980690)),
-        (c = n(c, d, a, b, f[e + 10], 15, 4293915773)),
-        (b = n(b, c, d, a, f[e + 1], 21, 2240044497)),
-        (a = n(a, b, c, d, f[e + 8], 6, 1873313359)),
-        (d = n(d, a, b, c, f[e + 15], 10, 4264355552)),
-        (c = n(c, d, a, b, f[e + 6], 15, 2734768916)),
-        (b = n(b, c, d, a, f[e + 13], 21, 1309151649)),
-        (a = n(a, b, c, d, f[e + 4], 6, 4149444226)),
-        (d = n(d, a, b, c, f[e + 11], 10, 3174756917)),
-        (c = n(c, d, a, b, f[e + 2], 15, 718787259)),
-        (b = n(b, c, d, a, f[e + 9], 21, 3951481745)),
-        (a = h(a, q)),
-        (b = h(b, r)),
-        (c = h(c, s)),
-        (d = h(d, t));
-
-    return (p(a) + p(b) + p(c) + p(d)).toLowerCase();
-};
-</script>
-
-</html>
 
 <?php
 

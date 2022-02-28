@@ -28,7 +28,7 @@ if (empty($_SESSION['user'])) {
                     </ul>
 
                 </nav>
-                <?php include "./page/banner_manager.php" ?>
+
             </div>
         </div>
     </div>

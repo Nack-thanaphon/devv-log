@@ -10,7 +10,7 @@ $(function() { // เรียกใช้งาน datatable
         for (var i = 0; i < data.length; i++) {
             tableData.push([
                 `<a href="https://www.mugh.or.th/single_news.php?id=${data[i].id}" target="_blank" class="btn btn-outline-primary p-1"> ${data[i].id} </a>`,
-                `<img src="../../${data[i].image}" class="img-fluid" width="100px">`,
+                `<img src="../../uploads/banner/${data[i].image}" class="img-fluid" width="100px">`,
                 `${data[i].name}`,
                 `${data[i].type}`,
                 `<input class="toggle-event"  id="toggle-event" data-id="${data[i].id}" type="checkbox" name="status" 

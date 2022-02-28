@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     if ($row['user_status'] == '1') {
                         $_SESSION['user'] = array(
                             'user_email' => $row['user_email'],
+                            'full_name' => $row['full_name'],
                             'user_name' => $row['user_name'],
                             'user_password' => $row['user_password'],
                             'user_role_id' => $row['user_role_id'],

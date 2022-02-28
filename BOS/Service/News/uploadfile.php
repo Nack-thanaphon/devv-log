@@ -4,7 +4,7 @@ if (isset($_FILES['files']) && !empty($_FILES['files'])) {
     $no_files = count($_FILES["files"]['name']);
     $fn = '';
     for ($i = 0; $i < $no_files; $i++) {
-        // $_FILES["files"]["name"][$i] = preg_replace('/{{\s*(.+?\.(?:jpg|png|gif|jpeg))\s*}}/i','', $_FILES["files"]["name"][$i]);
+        // $_FILES["files"]["name"][$i] = preg_replace('/{{\s*(.+?\.(?:jpg|png|gif|jpeg))\s*}}/i', '', $_FILES["files"]["name"][$i]);
         // echo $_FILES["files"]["name"][$i];
 
         $arr = (explode(".", $_FILES["files"]["name"][$i]));
@@ -35,7 +35,7 @@ if (isset($_FILES['files']) && !empty($_FILES['files'])) {
                 //change name
                 $name = $_FILES["files"]["name"][$i];
                 $tmp = $_FILES["files"]["tmp_name"][$i];
-                $path = '../../images/news/';
+                $path = '../../uploads/images/';
                 list($txt, $ext) = explode(".", $name);
                 $milliseconds = round(microtime(true) * 1000);
                 $new_file_name = $milliseconds . $i . "." . $ext;
@@ -45,7 +45,7 @@ if (isset($_FILES['files']) && !empty($_FILES['files'])) {
 
                 if (move_uploaded_file($tmp, $path . $new_file_name)) {
                     chmod($path . $new_file_name, 0777);
-                    echo 'images/news/' . $new_file_name;
+                    echo $path . $new_file_name;
                 } else {
                     echo "Sorry, there was an error uploading your file. " . $path . $new_file_name;
                 }

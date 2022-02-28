@@ -35,3 +35,17 @@ if (isset($_SESSION["successMsg"])) {
 <?php
 }
 ?>
+
+
+<?php
+
+if (isset($_SESSION["updateMsg"])) {
+?>
+<div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong><?php echo $_SESSION["updateMsg"];
+                unset($_SESSION["updateMsg"]); ?></strong>
+</div>
+<?php
+}
+?>

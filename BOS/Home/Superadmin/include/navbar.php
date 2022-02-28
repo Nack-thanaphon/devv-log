@@ -14,7 +14,7 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item ">
+    <li class="nav-item active">
         <a class="nav-link" href="./index.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
@@ -29,26 +29,36 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item  ">
+    <li class="nav-item  active">
         <a class="nav-link collapsed " href="./news.php" aria-controls="collapseTwo">
             <i class="fas fa-rss-square"></i>
             <span>จัดการข่าวสาร</span>
         </a>
     </li>
-    <li class="nav-item  ">
+    <li class="nav-item  active">
         <a class="nav-link collapsed " href="./banner.php" aria-controls="collapseTwo">
             <i class="fab fa-font-awesome-flag"></i>
             <span>จัดการแบนเนอร์</span>
         </a>
     </li>
-    <li class="nav-item ">
-        <a class="nav-link collapsed" href="./download.php" aria-controls="collapseTwo">
+    <li class="nav-item active">
+        <a class="nav-link collapsed" href="./file.php" data-toggle="collapse" data-target="#collapseTwo"
+            aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-bookmark"></i>
             <span>จัดการดาวน์โหลด</span>
         </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">File management:</h6>
+                <a class="collapse-item" href="./file.php">จัดการเอกสาร</a>
+                <a class="collapse-item" href="./file_g.php">จัดการประเภทเอกสาร</a>
+                <a class="collapse-item" href="./file_t.php">จัดการชนิดเอกสาร</a>
+            </div>
+        </div>
     </li>
-    <li class="nav-item ">
-        <a class="nav-link collapsed" href="./activity.php" aria-controls="collapseTwo">
+
+    <li class="nav-item " disable>
+        <a class="nav-link collapsed" href="#" aria-controls="collapseTwo">
             <i class="fas fa-calendar-day"></i>
             <span>จัดการกิจกรรม</span>
         </a>
@@ -62,16 +72,16 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        SuperAdmin-Panal
+        Website-Panal
     </div>
 
     <li class="nav-item">
-        <a class="nav-link" href="./gallary.php">
+        <a class="nav-link" href="#">
             <i class="fas fa-fw fa-table"></i>
             <span>คลังภาพ</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="./newsletter.php">
+        <a class="nav-link" href="#">
             <i class="fas fa-envelope-open-text"></i>
             <span>Newsletter</span></a>
     </li>
@@ -80,13 +90,13 @@
             <i class="fas fa-id-card"></i>
             <span>จัดการผู้มาติดต่อ</span></a>
     </li> -->
-    <li class="nav-item ">
+    <li class="nav-item  active">
         <a class="nav-link" href="user.php">
             <i class="fas fa-users-cog"></i>
             <span>จัดการผู้ใช้งาน</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="./userguide.php">
+        <a class="nav-link" href="#">
             <i class="fas fa-book-open"></i>
             <span>คู่มือการใช้งาน</span></a>
     </li>
