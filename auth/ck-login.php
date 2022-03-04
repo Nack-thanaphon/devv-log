@@ -26,8 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $gentoken = md5(generateRandomString(10) . $now);
 
     //Protect SQL INJECTION
-    $query = "select * from tbl_user where user_email = ? ";
-    $stmt = $conn->prepare($query);
+    $stmt = $conn->prepare("SELECT * FROM tbl_user INNER JOIN  tbl_user_role ON  tbl_user_role.user_role_id = tbl_user.user_role_id  where user_email = ? ");
     if ($stmt->execute([
         $txt_email
     ])) {
@@ -44,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             'full_name' => $row['full_name'],
                             'user_name' => $row['user_name'],
                             'user_password' => $row['user_password'],
+                            'user_position' => $row['user_role'],
                             'user_role_id' => $row['user_role_id'],
                         );
                         $role = $_SESSION['user']['user_role_id'];

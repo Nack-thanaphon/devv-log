@@ -47,12 +47,12 @@
         <div class="row p-0 m-0">
             <div class="col-12 p-0 m-0">
                 <span class=" d-none d-lg-inline text-gray-600 small">
-                    <?php echo $_SESSION['user']['user_email'] ?>
+                    <?php echo $_SESSION['user']['full_name'] ?>
                 </span>
             </div>
             <div class="col-12 p-0 m-0">
                 <span class="badge badge-pill badge-primary">
-                    <?php echo $_SESSION['user']['full_name'] ?>
+                    <?php echo $_SESSION['user']['user_position'] ?>
                 </span>
             </div>
         </div>
