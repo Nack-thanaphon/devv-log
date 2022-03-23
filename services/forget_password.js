@@ -1,68 +1,26 @@
-$(document).ready(function() {
-    $(document).on("click", "#btn_send", function(e) {
-
-        var email = $("#txt_email").val();
-        var atpos = email.indexOf("@");
-        var dotpos = email.lastIndexOf(".com");
-
-        if (email == "") {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong!',
-            });
-        } else if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= email.length) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong!',
-            });
-        } else {
-            $.ajax({
-                url: "send_email.php",
-                method: "post",
-                data: {
-                    uemail: email
-                },
-                success: function(response) {
-                    $("#msg").html(response);
-                }
-            });
-        }
-    });
+$(document).on("click", "#btn_send", function(e) {
+    var email = $("#txt_email").val();
+    if (email == "") {
+        $('#txt_email').focus();
+        $('#txt_email').addClass('add');
+        $('#m-email').html('<label class="text-uppercase text-danger">กรุณากรอกอีเมลล์ !</label>');
+        return false;
+    } else {
+        $.ajax({
+            url: "../forget-password/send_email.php",
+            method: "post",
+            data: {
+                uemail: email
+            },
+            success: function(response) {
+                $("#msg").html(response);
+            }
+        });
+    }
 });
 
 
-$(document).ready(function() {
-    $(document).on("click", "#btn_update", function(e) {
 
-        var password = $("#txt_password").val();
-        var cpassword = $("#txt_cpassword").val();
-        var token = $("#txt_token").val();
-
-        if (password == "") {
-            alert("Please Enter New Password ! ");
-        } else if (password.length < 6) {
-            alert("Please Enter New Password Must Six Character ! ");
-        } else if (cpassword == "") {
-            alert("Please Enter Confirm Password !");
-        } else if (password != cpassword) {
-            alert("Password Not Match ! ");
-        } else {
-            $.ajax({
-                url: "update_password.php",
-                method: "post",
-                data: {
-                    utoken: $("#txt_token").val(),
-                    upassword: MD5($("#txt_password").val()),
-                },
-                success: function(response) {
-                    $("#msg").html(response);
-                }
-            });
-        }
-    });
-});
 
 MD5 = function(e) {
     function h(a, b) {
@@ -235,3 +193,51 @@ MD5 = function(e) {
 
     return (p(a) + p(b) + p(c) + p(d)).toLowerCase();
 };
+
+
+
+
+$(document).on("click", "#btn_update", function(e) {
+
+    let password = $("#password").val();
+    let cpassword = $("#cpassword").val();
+    let token = $("#token").val();
+
+    if (password == "") {
+        $('#message').show();
+        $('#message').html('กรณากรอกรหัสผ่าน');
+        return false
+
+    }
+    if (cpassword == "") {
+        $('#cmessage').html('กรณากรอกรหัสผ่านอีกครั้ง');
+        $('#cmessage').show();
+        return false
+
+    }
+    if (password != cpassword) {
+        $('#cmessage').html('รหัสผ่านไม่ตรงกัน');
+        $('#cmessage').show();
+        return false
+    } else {
+
+        $.ajax({
+            url: "../forget-password/update_password.php",
+            method: "post",
+            data: {
+                utoken: token,
+                upassword: MD5($("#password").val())
+            },
+            success: (response) => {
+                Swal.fire(
+                    'เรียบร้อย',
+                    'เปลี่ยนรหัสผ่านเรียบร้อย',
+                    'success'
+                );
+                setTimeout(() => {
+                    window.location.href = "../";
+                }, 1000);
+            },
+        });
+    }
+});

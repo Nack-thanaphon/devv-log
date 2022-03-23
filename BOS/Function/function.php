@@ -1,5 +1,13 @@
 <?php
-
+function DateThai($strDate)
+{
+    $strYear = date("Y", strtotime($strDate)) + 543;
+    $strMonth = date("n", strtotime($strDate));
+    $strDay = date("j", strtotime($strDate));
+    $strMonthCut = array("", "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค.");
+    $strMonthThai = $strMonthCut[$strMonth];
+    return "$strDay $strMonthThai $strYear";
+}
 
 function count_total_user($conn)
 {
@@ -66,10 +74,9 @@ function file_type($conn)
     $statement->execute();
     $result = $statement->fetchAll();
     $output = '';
-    foreach ($result as $row) {
-
-        $output .= ' <input class="form-check-input"  type="radio" 
-        id="f_type" name="f_type" value="' . $row["t_id"] . '" required  checked="checked"> 
+    foreach ($result as $i => $row) {
+        $output .= ' <input class="editcheckbox edit-ftype' . ($i + 1) . ' form-check-input"  type="radio" 
+        id="t_id' . $i + 1 . '" name="t_id" value="' . $row["t_id"] . '" required  > 
         <label class="form-check-label" for="f_group">' . $row["t_name"] . '</label>';
     }
     return $output;
@@ -89,6 +96,35 @@ function count_total_banner($conn)
     $statement->execute();
     return $statement->rowCount();
 }
+
+
+
+function count_total_gallery($conn)
+{
+    $query = "SELECT * FROM tbl_gallery";
+    $statement = $conn->prepare($query);
+    $statement->execute();
+    return $statement->rowCount();
+}
+
+function count_total_images($conn)
+{
+    $query = "SELECT * FROM tbl_images";
+    $statement = $conn->prepare($query);
+    $statement->execute();
+    return $statement->rowCount();
+}
+
+function count_prepare_delete($conn)
+{
+    $query = "SELECT * FROM tbl_gallery WHERE g_status = '0' ";
+    $statement = $conn->prepare($query);
+    $statement->execute();
+    return $statement->rowCount();
+}
+
+
+
 function total_banner_online($conn)
 {
     $query = "SELECT * FROM tbl_banner where b_status ='1'";
@@ -99,11 +135,23 @@ function total_banner_online($conn)
 
 function web_count_static($conn)
 {
-    $sql = "select visitor_counter from tbl_visitor_counter";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $counter = $arr[0]['visitor_counter'];
+    $query = "SELECT * FROM tbl_webstat";
+    $statement = $conn->prepare($query);
+    $statement->execute();
+    return $statement->rowCount();
+}
 
-    return $counter;
+
+function event_type($conn)
+{
+    $query = "SELECT * FROM tbl_events_type ORDER BY et_id ASC ";
+    $statement = $conn->prepare($query);
+    $statement->execute();
+    $result = $statement->fetchAll();
+
+    $output = '';
+    foreach ($result as $row) {
+        $output .= '<option value="' . $row["et_id"] . '" required >' . $row["et_name"] . '</option>';
+    }
+    return $output;
 }

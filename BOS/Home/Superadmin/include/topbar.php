@@ -58,16 +58,20 @@
         </div>
         <div class="col-12 px-3 p-0 m-0">
 
-            <img class="img-profile rounded-circle" src="assets/img/undraw_profile.svg">
+            <img class="img-profile rounded-circle"
+                src="https://img.freepik.com/free-vector/call-center-customer-service-businesswoman-character-pose-with-laptop-headset-phone_40876-1939.jpg?size=338&ext=jpg">
+            <!-- <img src="                           alt="..." class="img-circle profile-img"> -->
         </div>
     </a>
     <!-- Dropdown - User Information -->
     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+        <a class="dropdown-item" id="profile" href="#" data-toggle="modal">
+            <input type="hidden" id="profile_id" value="<?php echo $_SESSION['user']['salt'] ?>">
             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
             Profile
         </a>
-        <a class="dropdown-item" href="./user_profile.php">
+
+        <a class="dropdown-item" id="" href="./user_profile.php?salt=<?php echo $_SESSION['user']['salt'] ?>">
             <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
             Settings
         </a>
