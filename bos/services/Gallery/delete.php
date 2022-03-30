@@ -42,6 +42,9 @@ if ($_POST["action"] == "delete") {
         http_response_code(405);
     }
 } else if ($_POST["action"] == "remove_file") {
+
+    $test = $_POST['path'];
+
     if (file_exists($_POST["path"])) {
         unlink($_POST["path"]);
 
@@ -59,7 +62,7 @@ if ($_POST["action"] == "delete") {
         );
         array_push($items_arr['result'], $items);
         echo json_encode($items_arr);
-
+        echo $test;
         http_response_code(200);
     } else {
         http_response_code(405);

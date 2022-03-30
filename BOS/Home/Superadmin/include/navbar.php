@@ -57,7 +57,6 @@
         </div>
     </li>
 
-
     <li class="nav-item active">
         <a class="nav-link collapsed" href="./activity.php" data-toggle="collapse" data-target="#activity"
             aria-expanded="true" aria-controls="collapseTwo">
@@ -68,6 +67,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Activity management:</h6>
                 <a class="collapse-item" href="./activity.php">เพิ่ม-แก้ไข กิจกรรม</a>
+                <a class="collapse-item" href="./activity_type.php">เพิ่มหัวข้อกิจกรรม</a>
                 <a class="collapse-item" href="./activity_table.php">จัดการระบบกิจกรรม</a>
 
             </div>
