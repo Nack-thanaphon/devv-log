@@ -184,57 +184,84 @@ if (empty($_SESSION['user'])) {
     })
 
 
-    $(document).on('click', '#create_user', function() {
-        event.preventDefault();
+    $('#user_email').on('change', function() {
+
+        let email = $('#user_email').val()
+        $('#ck_email').removeClass()
+
+
         $.ajax({
-            url: "../../services/User/ck_create.php",
-            method: "POST",
+            url: "../../services/User/ck_email.php",
+            method: "GET",
             dataType: "JSON",
             data: {
-                fullname: $("#full_name").val(),
-                password: MD5($("#user_password").val()),
-                username: $("#user_name").val(),
-                email: $("#user_email").val(),
-                position: $("#user_role_id").val(),
+                email: email
             },
-            success: function(data) {
-                Swal.fire({
-                        text: 'เพิ่มข้อมูลเรียบร้อย',
-                        icon: 'success',
-                        confirmButtonText: 'ตกลง',
-                    })
-                    .then((result) => {
-                        location.reload();
-                    });
+            success: function(resp) {
+                if (resp == false) {
+                    $('#ck_email').addClass("text-success")
+                    $('#ck_email').html("(*อีเมลล์สามารถใช้ได้)")
+                } else {
+                    $('#ck_email').addClass("text-danger")
+                    $('#ck_email').html("(*อีเมลล์ซ้ำไม่สามารถใช้ได้)")
+                }
             }
         })
+    })
+
+    $('#reuser_password').change(function() {
+
+        let password = $("#reuser_password").val();
+        if (password != "") {
+            $("#create_user").attr('disabled', false);
+        } else {
+            $("#create_user").attr('disabled', true);
+        }
+    })
+
+    $(document).on('click', '#create_user', function() {
+
+        var password = $("#user_password").val();
+        var repassword = $("#reuser_password").val();
+        if (password != repassword) {
+            $('#reuser_password').css('border', '1px solid red');
+            $('#msg').html('(*รหัสผ่านจำเป็นต้องตรงกัน)')
+            Swal.fire({
+                icon: 'error',
+                title: 'เกิดข้อผิดพลาด',
+                text: 'รหัสผ่านที่คุณกรอกไม่ตรงกัน !',
+
+            })
+
+        } else {
+            event.preventDefault();
+            $.ajax({
+                url: "../../services/User/ck_create.php",
+                method: "POST",
+                dataType: "JSON",
+                data: {
+                    fullname: $("#full_name").val(),
+                    password: MD5($("#user_password").val()),
+                    username: $("#user_name").val(),
+                    email: $("#user_email").val(),
+                    position: $("#user_role_id").val(),
+                },
+                success: function(data) {
+                    Swal.fire({
+                            text: 'เพิ่มข้อมูลเรียบร้อย',
+                            icon: 'success',
+                            confirmButtonText: 'ตกลง',
+                        })
+                        .then((result) => {
+                            location.reload();
+                        });
+                }
+            })
+        }
     });
 
 
 
-
-    $(document).on('click', '#d-user', function() { // เรียกใช้งาน แก้ไขข้อมูล (MOdal previews)
-
-        const salt = $('#d-user').val();
-        $.ajax({
-            url: "../../services/User/update.php",
-            method: "GET",
-            data: {
-                salt: salt
-            },
-            dataType: "json",
-            success: function(data) {
-                console.log(data)
-                data = data.result;
-
-                // $('#dfull_name').html(data[0].name);
-                // $('#duser_name').html(data[0].user_name);
-                // $('#duser_email').html(data[0].email);
-                // $('#duser_role_id').html(data[0].position);
-                // $('#detail_user').modal('show');
-            }
-        });
-    });
 
 
     $('#edit_userform').on('submit', function(e) { // เรียกใช้งาน [บันทึกข้อมูลแก้ไข] (สำคัญ)

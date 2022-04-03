@@ -42,8 +42,8 @@ $(function() {
                 };
             },
             error: (err) => {
-                toastr.error("เข้าสู่ระบบไม่สำเร็จ")
                 location.reload()
+                toastr.error("เข้าสู่ระบบไม่สำเร็จ")
                     // console.log(err);
             }
         })

@@ -33,6 +33,7 @@ if (isset($_POST['uemail'])) {
 
 			// SMTP Settings
 			$mail->isSMTP();
+			$mail->CharSet = "utf-8";
 			$mail->Host = 'smtp.gmail.com';
 			$mail->Mailer = "smtp";
 			$mail->SMTPAuth = true;

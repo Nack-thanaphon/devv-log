@@ -40,7 +40,7 @@ require_once '../database/connect.php';
 
                         <h1 class="login-title">Forget Password</h1>
 
-                        <?php include '../template/include/message.php'; ?>
+                        <div id="msg"></div>
 
                         <div class="form-group mb-4">
                             <label id="m-email" class="text-uppercase">กรุณากรอกอีเมลล์</label>

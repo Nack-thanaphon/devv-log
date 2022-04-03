@@ -1,6 +1,6 @@
 <?php
 require_once './database/connect.php';
-include 'template/include/header.php';
+include './template/include/header.php';
 ?>
 
 <body>
@@ -9,8 +9,8 @@ include 'template/include/header.php';
             <div class="row">
                 <div class="col-sm-6 login-section-wrapper">
                     <div class="brand-wrapper">
-                        <h1>MUGH</h1>
-                        <p>Mahidol University Global Health</p>
+                        <h1>AUN-HPN</h1>
+                        <p>ASEAN University Network Health Promotion Network</p>
                     </div>
                     <div class="login-wrapper my-auto">
                         <h1 class="login-title">Log in</h1>
