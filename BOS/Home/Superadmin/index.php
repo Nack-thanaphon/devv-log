@@ -3,8 +3,10 @@ include "../../database/connect.php";
 include "./include/header.php";
 
 // checking user logged or not
-if (empty($_SESSION['user'])) {
-    header('location: index.php');
+if (($_SESSION['user']['user_role_id']) !== '1') {
+    $message = "คุณไม่ได้รับอนุญาติในการเข้าถึง";
+    echo "<script type='text/javascript'>alert('$message');</script>";
+    header('location: ./index.php');
 }
 ?>
 
@@ -37,8 +39,11 @@ if (empty($_SESSION['user'])) {
 
 
     <script>
+    console.log(0)
     $(document).ready(function() {
+        console.log(1)
         web_stat_nation();
+        console.log(2)
     });
 
     function web_stat_nation() {

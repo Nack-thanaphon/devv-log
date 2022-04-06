@@ -83,21 +83,21 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                 break;
                         }
                     } else {
-                        http_response_code(400);
                         $_SESSION['message'] = "ไอดีของคุณไม่สามารถใช้งานได้กรุณาติดต่อแอดมิน";
+                        http_response_code(400);
                     }
                 } else {
-                    http_response_code(400);
                     $_SESSION['message'] = "ชื่อและรหัสผ่านผู้ใช้งานไม่ตรงกัน";
+                    http_response_code(400);
                 }
             }
         } else {
-            http_response_code(405);
             $_SESSION['message'] = "ไม่มีไอดีคุณในระบบ";
+            http_response_code(405);
         }
     } else {
-        http_response_code(405);
         $_SESSION['message'] = "เกิดข้อผิดพลาด";
+        http_response_code(405);
     }
     // } else {
     //     echo "Access denied!";
