@@ -32,7 +32,7 @@ include "../../../bos/function/function.php"
 
 
     <div id="adnews" class="modal fade" role="dialog">
-        <div class=" modal-dialog  modal-md">
+        <div class=" modal-dialog  modal-lg">
             <div class="row ">
                 <div class="modal-content">
                     <div class="modal-header bg-primary  text-white border-0 pt-4">
@@ -117,7 +117,7 @@ include "../../../bos/function/function.php"
 
 
     <div id="enews" class="modal fade" role="dialog">
-        <div class=" modal-dialog  modal-md">
+        <div class=" modal-dialog  modal-lg">
             <div class="row ">
                 <div class="modal-content">
                     <div class="modal-header bg-danger  text-white border-0 pt-4">

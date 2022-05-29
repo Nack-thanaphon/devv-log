@@ -2,6 +2,18 @@
 include "../../database/connect.php";
 
 
+function generateRandomString($length = 10)
+{
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
     if (isset($_GET["salt"])) {
@@ -29,9 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
                 "salt" => $salt,
                 "email" => $user_email,
                 "date" => $user_create,
-                "position" => $user_role,
+                "position" => $user_role_id,
+                "position_name" => $user_role,
                 "status" => $status,
-
             );
             array_push($response['result'], $data_items);
         }
@@ -41,18 +53,22 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 } else if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
-    $id = $_POST['id'];
+    $saltid = $_POST['salt'];
     $fullname = $_POST['fullname'];
+
     $username = $_POST['username'];
     $email = $_POST['email'];
     $position = $_POST['position'];
 
 
+    $salt = generateRandomString(10);
+    $newpassword = md5($password . $salt);
+
     $query = " UPDATE tbl_user SET `full_name` = '" . $fullname . "', 
     `user_role_id` = '" . $position . "', 
     `user_name` = '" . $username . "', 
     `user_email` = '" . $email . "'
-    WHERE `user_id` = '" . $id . "' ";
+    WHERE `salt` = '" . $saltid . "' ";
 
     $stmt = $conn->prepare($query);
     $stmt->execute();

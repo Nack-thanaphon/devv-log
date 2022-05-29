@@ -21,7 +21,7 @@ function DateThai($strDate)
 
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
-    $select_stmt = $conn->prepare("SELECT * FROM tbl_news INNER JOIN  tbl_news_type ON  tbl_news_type.n_type_id = tbl_news.n_type WHERE n_status = '1'  ORDER BY n_id  ASC LIMIT 3 ");
+    $select_stmt = $conn->prepare("SELECT * FROM tbl_news INNER JOIN  tbl_news_type ON  tbl_news_type.n_type_id = tbl_news.n_type WHERE n_status = '1'  ORDER BY n_id  DESC LIMIT 3 ");
     $select_stmt->execute();
 
     $response = array();

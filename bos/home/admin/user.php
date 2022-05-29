@@ -46,7 +46,6 @@ if (empty($_SESSION['user'])) {
             for (var i = 0; i < data.length; i++) {
                 tableData.push([
                     ` <button  type="button" class="btn btn-outline-primary p-1" id="d-user" data-toggle="modal" value="${data[i].salt}" >${data[i].id}
- 
                     </button>`,
                     `${data[i].name}`,
                     `${data[i].position}`,
@@ -55,9 +54,9 @@ if (empty($_SESSION['user'])) {
                 ${data[i].u_status ? 'checked' : ''} data-toggle="toggle" data-on="เปิด" 
                         data-off="ปิด" data-onstyle="success" data-style="ios">`,
                     `<div class="btn-group" role="group">
-                        <a href="./user_profile.php?salt=${data[i].salt}" type="button" class="btn btn-warning " id="edit-user"  data-id="${data[i].id}"  >
+                        <button type="button" class="btn btn-warning"  id="edit-user"  data-id="${data[i].salt}">
                             <i class="far fa-edit"></i> แก้ไข
-                        </a>
+                        </button>
                         <button type="button" class="btn btn-danger" id="delete" data-id="${data[i].id}">
                             <i class="far fa-trash-alt"></i> ลบ
                         </button>
@@ -184,38 +183,52 @@ if (empty($_SESSION['user'])) {
     })
 
 
-    $(document).on('click', '#create_user', function() {
-        event.preventDefault();
+    $('#user_email').on('change', function() {
+
+        let email = $('#user_email').val()
+        $('#ck_email').removeClass()
+        $('#ck_email').hide()
+
+
+
         $.ajax({
-            url: "../../services/User/ck_create.php",
-            method: "POST",
+            url: "../../services/User/ck_email.php",
+            method: "GET",
             dataType: "JSON",
             data: {
-                fullname: $("#full_name").val(),
-                password: MD5($("#user_password").val()),
-                username: $("#user_name").val(),
-                email: $("#user_email").val(),
-                position: $("#user_role_id").val(),
+                email: email
             },
-            success: function(data) {
-                Swal.fire({
-                        text: 'เพิ่มข้อมูลเรียบร้อย',
-                        icon: 'success',
-                        confirmButtonText: 'ตกลง',
-                    })
-                    .then((result) => {
-                        location.reload();
-                    });
+            success: function(resp) {
+                if (resp == false) {
+                    $('#ck_email').addClass("text-success")
+                    $('#ck_email').html("(*อีเมลล์สามารถใช้ได้)")
+                    $('#ck_email').show()
+
+                } else {
+                    $('#ck_email').addClass("text-danger")
+                    $('#ck_email').html("(*อีเมลล์ซ้ำไม่สามารถใช้ได้)")
+                    $('#ck_email').show()
+
+                }
             }
         })
-    });
+    })
+
+    $('#reuser_password').change(function() {
+
+        let password = $("#reuser_password").val();
+        if (password != "") {
+            $("#create_user").attr('disabled', false);
+        } else {
+            $("#create_user").attr('disabled', true);
+        }
+    })
 
 
+    $(document).on('click', '#edit-user', function() { // เรียกใช้งาน แก้ไขข้อมูล (MOdal previews)
+        let salt = $(this).data('id');
 
 
-    $(document).on('click', '#d-user', function() { // เรียกใช้งาน แก้ไขข้อมูล (MOdal previews)
-
-        const salt = $('#d-user').val();
         $.ajax({
             url: "../../services/User/update.php",
             method: "GET",
@@ -224,31 +237,81 @@ if (empty($_SESSION['user'])) {
             },
             dataType: "json",
             success: function(data) {
-                console.log(data)
                 data = data.result;
-
-                // $('#dfull_name').html(data[0].name);
-                // $('#duser_name').html(data[0].user_name);
-                // $('#duser_email').html(data[0].email);
-                // $('#duser_role_id').html(data[0].position);
-                // $('#detail_user').modal('show');
+                $('#euser_id').val(data[0].salt);
+                $('#efull_name').val(data[0].name);
+                $('#euser_name').val(data[0].username);
+                $('#euser_email').val(data[0].email);
+                $('#euser_role_id').val(data[0].position);
+                $('#e_user').modal('show');
             }
         });
     });
 
+    $(document).on('click', '#create_user', function() {
 
-    $('#edit_userform').on('submit', function(e) { // เรียกใช้งาน [บันทึกข้อมูลแก้ไข] (สำคัญ)
-        e.preventDefault();
+        var password = $("#user_password").val();
+        var repassword = $("#reuser_password").val();
+        if (password != repassword) {
+            $('#reuser_password').css('border', '1px solid red');
+            $('#msg').html('(*รหัสผ่านจำเป็นต้องตรงกัน)')
+            Swal.fire({
+                icon: 'error',
+                title: 'เกิดข้อผิดพลาด',
+                text: 'รหัสผ่านที่คุณกรอกไม่ตรงกัน !',
+            })
+
+        } else {
+            event.preventDefault();
+            $.ajax({
+                url: "../../services/User/ck_create.php",
+                method: "POST",
+                dataType: "JSON",
+                data: {
+
+                    fullname: $("#full_name").val(),
+                    password: MD5($("#user_password").val()),
+                    username: $("#user_name").val(),
+                    email: $("#user_email").val(),
+                    position: $("#user_role_id").val(),
+                },
+                success: function(data) {
+                    Swal.fire({
+                            text: 'เพิ่มข้อมูลเรียบร้อย',
+                            icon: 'success',
+                            confirmButtonText: 'ตกลง',
+                        })
+                        .then((result) => {
+                            location.reload();
+                        });
+                }
+            })
+        }
+    });
+
+
+    $('#ereuser_password').change(function() {
+
+        let password = $("#ereuser_password").val();
+        if (password != "") {
+            $("#edit_user").attr('disabled', false);
+        } else {
+            $("#edit_user").attr('disabled', true);
+        }
+    })
+
+    $('#edit_user').on('click', function(e) { // เรียกใช้งาน [บันทึกข้อมูลแก้ไข] (สำคัญ)
+        event.preventDefault();
         $.ajax({
             type: "POST",
             dataType: "JSON",
             url: "../../services/User/update.php",
             data: {
-                id: $('#euser_id').val(),
-                fullname: $('#efull_name').val(),
-                username: $('#euser_name').val(),
-                email: $('#euser_email').val(),
-                position: $('#euser_role_id').val(),
+                salt: $('#euser_id').val(),
+                fullname: $("#efull_name").val(),
+                username: $("#euser_name").val(),
+                email: $("#euser_email").val(),
+                position: $("#euser_role_id").val(),
             },
             success: function(response) {
                 Swal.fire({
@@ -264,6 +327,7 @@ if (empty($_SESSION['user'])) {
                 // console.log("bad", err);
             }
         });
+
     });
 
 

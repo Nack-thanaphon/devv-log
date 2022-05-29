@@ -1,4 +1,8 @@
 <?php
+
+header('Content-Type: application/json');
+header('Access-Control-Allow-Credentials: true');
+
 include "../../../database/connect.php";
 
 if (isset($_POST['p_name'])) {
@@ -25,17 +29,25 @@ if (isset($_POST['p_name'])) {
             move_uploaded_file($_FILES['p_file']['tmp_name'], $path_copy);
 
             //ประกาศตัวแปรรับค่าจากฟอร์ม
-            //     //sql insert
-            //     $stmt = $conn->prepare(" UPDATE tbl_user SET `user_image` = '" . $newname . "' WHERE u_id = '" . $newname . "'");
-            //     $stmt->execute();
+            $salt = $_POST['p_salt'];
 
-            //     $response = [
-            //         'status' => true,
-            //         'message' => 'Create Success'
-            //     ];
-            //     http_response_code(201);
-            //     echo json_encode($response);
-            // } else {
+            $query = " UPDATE tbl_user SET `user_image` = '" . $newname . "' WHERE `salt` = '" . $salt . "' ";
+
+            $stmt = $conn->prepare($query);
+            $stmt->execute();
+
+            $items_arr = array();
+            $items_arr['result'] = array();
+
+            $items = array(
+                "msg" => "success",
+                "code" => 200
+            );
+            array_push($items_arr['result'], $items);
+            echo json_encode($items_arr);
+
+            http_response_code(200);
+        } else {
             $response = [
                 'status' => false,
                 'message' => 'file not type'

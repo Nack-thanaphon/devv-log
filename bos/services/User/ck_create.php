@@ -46,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             ':user_email' =>  $email,
             ':user_password' => $newpassword,
             ':user_role_id' => $position,
-            // ':user_image'  => $_POST['n_imgname'],
             ':user_status' => '1',
             ':token' => $token,
             ':salt' => $salt,

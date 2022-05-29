@@ -184,7 +184,6 @@ if (empty($_SESSION['user'])) {
                 confirmButtonText: 'ตกลง',
             }).then((result) => {
                 location.reload();
-
             });
         })
 
