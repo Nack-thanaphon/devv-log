@@ -2,7 +2,7 @@
 include "../../../bos/function/function.php"
 ?>
 <div class="row">
-    <div class="col-md-3  text-white">
+    <div class="col-md-4  text-white">
         <div class="panel panel-default text-center shadow-sm bg-primary">
             <div class="panel-heading"><strong>จำนวนผู้เข้าชมเว็บไซต์</strong></div>
             <div class="panel-body" align="center">
@@ -10,46 +10,32 @@ include "../../../bos/function/function.php"
 
             </div>
             <div class="panel-footer bg-secondary py-2">
-                <a href="" disabled class="small-box-footer py-3  text-white"> คลิกจัดการระบบ <i
-                        class="fas fa-arrow-circle-right"></i></a>
+                <a href="" disabled class="small-box-footer py-3  text-white"> คลิกจัดการระบบ <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
     </div>
 
 
-    <div class="col-md-3  text-white">
+    <div class="col-md-4  text-white">
         <div class="panel panel-default text-center shadow-sm bg-warning">
             <div class="panel-heading "><strong>จำนวนเอกสาร</strong></div>
             <div class="panel-body" align="center">
                 <h1><?php echo  count_total_file($conn) ?></h1>
             </div>
             <div class="panel-footer bg-secondary py-2">
-                <a href="././file.php" class="small-box-footer py-3  text-white"> คลิกจัดการระบบ <i
-                        class="fas fa-arrow-circle-right"></i></a>
+                <a href="././file.php" class="small-box-footer py-3  text-white"> คลิกจัดการระบบ <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
     </div>
-    <div class="col-md-3  text-white">
-        <div class="panel panel-default text-center shadow-sm bg-success">
-            <div class="panel-heading "><strong>ผู้ดูแลระบบ</strong></div>
-            <div class="panel-body" align="center">
-                <h1><?php echo count_total_user($conn); ?></h1>
-            </div>
-            <div class="panel-footer bg-secondary py-2">
-                <a href="././user.php" class="small-box-footer py-3  text-white opacity-50"> คลิกจัดการระบบ <i
-                        class="fas fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3   text-white">
+
+    <div class="col-md-4   text-white">
         <div class="panel panel-default text-center shadow-sm bg-info">
             <div class="panel-heading"><strong>จำนวนข่าวสาร</strong></div>
             <div class="panel-body" align="center">
                 <h1><?php echo count_total_news($conn); ?></h1>
             </div>
             <div class="panel-footer bg-secondary py-2">
-                <a href="././news.php" class="small-box-footer py-3  text-white"> คลิกจัดการระบบ <i
-                        class="fas fa-arrow-circle-right"></i></a>
+                <a href="././news.php" class="small-box-footer py-3  text-white"> คลิกจัดการระบบ <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
     </div>
@@ -67,8 +53,7 @@ include "../../../bos/function/function.php"
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">จำนวนผู้เข้าชม(7 วันล่าสุด)</h6>
                     <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                         </a>
 
@@ -85,8 +70,7 @@ include "../../../bos/function/function.php"
                                 <div class=""></div>
                             </div>
                         </div>
-                        <canvas id="web_stat_daily" style="display: block; width: 668px; height: 320px;" width="668"
-                            height="320" class="chartjs-render-monitor"></canvas>
+                        <canvas id="web_stat_daily" style="display: block; width: 668px; height: 320px;" width="668" height="320" class="chartjs-render-monitor"></canvas>
                     </div>
                 </div>
             </div>
@@ -99,8 +83,7 @@ include "../../../bos/function/function.php"
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">จำนวนผู้เข้าชม(ตามสถานที่)</h6>
                     <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                         </a>
 
@@ -117,9 +100,7 @@ include "../../../bos/function/function.php"
                                 <div class=""></div>
                             </div>
                         </div>
-                        <canvas id="web_stat_nation" width="301" height="245"
-                            style="display: block; width: 301px; height: 245px;"
-                            class="chartjs-render-monitor"></canvas>
+                        <canvas id="web_stat_nation" width="301" height="245" style="display: block; width: 301px; height: 245px;" class="chartjs-render-monitor"></canvas>
                     </div>
                     <div class="mt-4 text-center small">
                         <span class="mr-2">

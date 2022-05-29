@@ -36,8 +36,6 @@ if (($_SESSION['user']['user_role_id']) != '2') {
         </div>
     </div>
 
-
-
     <script>
         $(document).ready(function() {
             web_stat_nation();

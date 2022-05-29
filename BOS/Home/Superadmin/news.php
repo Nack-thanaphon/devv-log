@@ -245,6 +245,8 @@ if (empty($_SESSION['user'])) {
 
         $('#eformData').on('submit', function(e) { // เรียกใช้งาน [บันทึกข้อมูลแก้ไข] (สำคัญ)
             e.preventDefault();
+            let btn_save = $("#enews_save").attr('disabled', true);
+
             $.ajax({
                 type: "POST",
                 dataType: "JSON",
@@ -276,7 +278,7 @@ if (empty($_SESSION['user'])) {
         })
 
         $(function() {
-            $("#datepicker").datepicker({
+            $("#datepicker,#edatepicker").datepicker({
                 todayHighlight: true, // to highlight the today's date
                 format: 'yyyy-mm-dd',
                 autoclose: true,
@@ -284,7 +286,7 @@ if (empty($_SESSION['user'])) {
             }).datepicker('update', new Date());
         });
 
-        var dp = $("#datepicker").datepicker({
+        var dp = $("#datepicker,#edatepicker").datepicker({
             format: "MM yyyy",
             startView: "months",
             minViewMode: "months"
@@ -292,13 +294,17 @@ if (empty($_SESSION['user'])) {
 
 
 
-        $(function() { // เรียกใช้งาน Summernote
+        $(document).ready(function() { // เรียกใช้งาน Summernote
 
             $('#detail').summernote({
+                lang: 'Th-TH', // default: 'en-US'
                 height: 200,
+                focus: true
             });
             $('#edetail').summernote({
+                lang: 'ko-KR', // default: 'en-US'
                 height: 200,
+                focus: true
             });
         })
 

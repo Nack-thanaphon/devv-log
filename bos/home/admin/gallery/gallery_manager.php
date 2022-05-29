@@ -15,8 +15,7 @@ include "../../function/function.php"
                         </h4>
                     </div>
                     <div class="col-6 text-right">
-                        <button type="button" name="create_folder" id="create_folder" class="btn btn-success"
-                            data-target="#exampleModal" data-toggle="modal">+เพิ่มอัลบั้ม </button>
+                        <button type="button" name="create_folder" id="create_folder" class="btn btn-success" data-target="#exampleModal" data-toggle="modal">+เพิ่มอัลบั้ม </button>
                     </div>
                 </div>
             </div>
@@ -125,22 +124,20 @@ include "../../function/function.php"
                         <div class="form-group col-md-12">
                             <label for="" class="text-primary"> <label for="">ชื่ออัลบั้ม</label>
                             </label>
-                            <input type="text" name="folder_name" id="folder_name" class="form-control"
-                                placeholder="กรุณากรอกชื่ออัลบั้ม" />
+                            <small><span id="ck_gname"></span></small>
+                            <input type="text" name="folder_name" id="folder_name" class="form-control" placeholder="กรุณากรอกชื่ออัลบั้ม" />
                         </div>
                         <div class="form-group col-md-12">
                             <div class="form-group">
                                 <label for="n_name" id="text_header" class="text-primary">รายละเอียดอัลบั้ม</label>
 
-                                <textarea class="form-control" id="d_gallary" type="text" name="d_gallary" rows="3"
-                                    placeholder="กรุณากรอกรายละเอียดอัลบั้ม"></textarea>
+                                <textarea class="form-control" id="d_gallary" type="text" name="d_gallary" rows="3" placeholder="กรุณากรอกรายละเอียดอัลบั้ม"></textarea>
                             </div>
                         </div>
-
+                        <input type="hidden" id="guser_id" value="<?php echo $_SESSION['user']['id'] ?>" />
                         <input type="hidden" name="action" id="action" />
                         <input type="hidden" name="old_name" id="old_name" />
-                        <button name="folder_button" id="c_gallery" class="btn btn-primary w-100"
-                            value="Create">เรียบร้อย</button>
+                        <button name="folder_button" id="c_gallery" class="btn btn-primary w-100" value="Create">เรียบร้อย</button>
 
                     </div>
                 </div>
@@ -171,21 +168,18 @@ include "../../function/function.php"
                         <label for="" class="text-primary"> <label for="">ชื่ออัลบั้ม</label>
                         </label>
                         <input type="hidden" name="old_name" id="old_name" />
-                        <input type="text" name="folder_name" id="efolder_name" class="form-control"
-                            placeholder="กรุณากรอกชื่ออัลบั้ม" />
+                        <input type="text" name="folder_name" id="efolder_name" class="form-control" placeholder="กรุณากรอกชื่ออัลบั้ม" />
                     </div>
                     <div class="form-group col-md-12">
                         <div class="form-group">
                             <label>รายละเอียดอัลบั้ม</label>
 
-                            <textarea class="form-control" id="ed_gallary" type="text" name="ed_gallary" rows="3"
-                                placeholder="กรุณากรอกรายละเอียดอัลบั้ม"></textarea>
+                            <textarea class="form-control" id="ed_gallary" type="text" name="ed_gallary" rows="3" placeholder="กรุณากรอกรายละเอียดอัลบั้ม"></textarea>
                         </div>
                     </div>
 
                     <input type="hidden" name="eid" id="eid" />
-                    <button type="submit" name="eg_update" id="eg_update" class="btn btn-primary w-100"
-                        value="Create">อัพเดตเรียบร้อย</button>
+                    <button type="submit" name="eg_update" id="eg_update" class="btn btn-primary w-100" value="Create">อัพเดตเรียบร้อย</button>
 
                 </div>
 

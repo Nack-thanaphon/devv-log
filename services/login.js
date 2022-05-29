@@ -24,7 +24,7 @@ $(function() {
                     case (resp = "admin"):
                         toastr.success("เข้าสู่ระบบสำเร็จ");
                         setTimeout(() => {
-                            location.href = '/bos/home/admin/'
+                            location.href = './bos/home/admin/'
                         }, 800);
                         break
                     case (resp = "editer"):

@@ -28,11 +28,12 @@ if ($_POST["action"] == "create") {
     if (!file_exists($_POST["folder_name"])) {
         $path = "../../uploads/gallery/";
         mkdir($path . $_POST["folder_name"], 0777, true); {
-            $statement = $conn->prepare("INSERT INTO tbl_gallery (g_name,g_detail) VALUES (:g_name,:g_detail)");
+            $statement = $conn->prepare("INSERT INTO tbl_gallery (g_name,g_detail,g_user) VALUES (:g_name,:g_detail,:g_user)");
             $result = $statement->execute(
                 array(
                     ':g_name' => $_POST["folder_name"],
                     ':g_detail' => $_POST["gd_name"],
+                    ':g_user' => $_POST["user"],
                 )
             );
             $response = [

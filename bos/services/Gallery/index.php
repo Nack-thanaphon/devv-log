@@ -62,7 +62,15 @@ if (isset($_POST["action"])) {
             $g_name = $row['g_name'];
             $folder = array_filter(glob($gallery . $g_name), 'is_dir');
 
+            $total = "";
+            $size = "";
+
             if (count($folder) > 0) {
+                foreach ($folder as $name) {
+                    $total = (count(scandir($name)) - 2);
+                    $size = get_folder_size($name);
+                }
+            } else {
                 foreach ($folder as $name) {
                     $total = (count(scandir($name)) - 2);
                     $size = get_folder_size($name);

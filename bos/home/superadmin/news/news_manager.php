@@ -81,7 +81,7 @@ include "../../../bos/function/function.php"
                                     <div class="custom-file" onchange="preview_image(event)">
                                         <input type="file" class="custom-file-input n_image" name="n_image" id="n_image">
                                         <input id="n_imgname" type="hidden" name="n_imgname">
-                                        <label class="custom-file-label" for="n_image">เลือกรูปภาพ</label>
+                                        <label class="custom-file-label" for="n_image">รูปปกข่าว</label>
 
                                     </div>
                                     <small id="message_img" class="text-danger"></small>
@@ -127,16 +127,15 @@ include "../../../bos/function/function.php"
                     <form id="eformData">
                         <div class="card-body">
                             <div class="form-row">
-                                <select class="custom-select mb-3" name="n_type" id="etype">
-                                    <option disabled>---กรุณาเลือกหัวข้อข่าว---</option>
-                                    <?php echo  news_type($conn) ?>
-                                </select>
-                                <div class="form-group col-md-12 p-0 m-0 mb-3">
-                                    <input type="text" class="form-control" name="n_name" id="ename" placeholder="ห้วข้อข่าว" required>
+                                <div class="form-group col-12 col-md-6 m-0 p-1">
+                                    <select class="custom-select mb-3" name="n_type" id="etype">
+                                        <option disabled>---กรุณาเลือกหัวข้อข่าว---</option>
+                                        <?php echo  news_type($conn) ?>
+                                    </select>
                                 </div>
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-12 col-md-6 m-0 p-1">
                                     <div class="input-group">
-                                        <div id="datepicker" class="input-group date">
+                                        <div id="edatepicker" class="input-group date">
                                             <input class="form-control" type="text" id="en_date" name="en_date" />
                                             <div class="input-group-append">
                                                 <button class="btn btn-outline-secondary" type="button"><span class="input-group-addon">
@@ -146,20 +145,21 @@ include "../../../bos/function/function.php"
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-                                <div class="form-group col-md-8">
+                                <div class="form-group col-12 col-md-12 m-0 p-1">
+
+                                    <input type="text" class="form-control" name="n_name" id="ename" placeholder="ห้วข้อข่าว" required>
+                                </div>
+                                <div class="form-group col-12 col-md-12 m-0 p-1">
+
                                     <input type="text" class="form-control" name="url" id="eurl" placeholder="ลิงค์ข่าวเพิ่มเติม">
                                 </div>
-                                <div class="form-group col-md-12 p-0 m-0 mb-3">
 
-                                    <label for="customFile">
-                                        <h5>รูปปกข่าว</h5>
-                                    </label>
+                                <div class="form-group col-12 col-md-12 m-0 p-1">
                                     <div class="custom-file" onchange="preview_eimage(event)">
                                         <input type="file" class="custom-file-input n_image" name="n_image" id="e_image">
                                         <input id="e_imgname" type="hidden" name="e_imgname">
-                                        <label class="custom-file-label" for="n_image">เลือกรูปภาพ</label>
+                                        <label class="custom-file-label" for="n_image">รูปปกข่าว</label>
 
                                     </div>
 
@@ -186,7 +186,7 @@ include "../../../bos/function/function.php"
                                 </div>
                             </div>
                             <input id="eid" type="hidden" name="id">
-                            <button type="submit" class="btn btn-primary btn-block mx-auto w-75" name="submit">บันทึกข้อมูล</button>
+                            <button type="submit" id="enews_save" class="btn btn-primary btn-block mx-auto w-75" name="submit">บันทึกข้อมูล</button>
                         </div>
                     </form>
                 </div>

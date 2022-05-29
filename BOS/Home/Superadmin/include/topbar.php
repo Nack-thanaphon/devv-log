@@ -3,7 +3,7 @@
 
 <!-- Nav Item - Messages -->
 <li class="nav-item dropdown no-arrow mx-1">
-    <a href="https://aun-hpn.or.th" target="_blank" class="nav-link dropdown-toggle">
+    <a href="https://mugh.or.th" target="_blank" class="nav-link dropdown-toggle">
 
         <i class="fas fa-home fa-fw mx-auto "></i>
         <span class="pl-2 p-0 m-0 d-none d-sm-block">กลับสู่หน้าเว็บไซต์</span>

@@ -20,23 +20,6 @@ function generateRandomString($length = 10)
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    // if (isset($_POST['g-recaptcha-response'])) {
-    //     $recaptcha_secret = "6LdkIKweAAAAAD_c9CF-3uhNxBoQ7h9rKuts6Ba8";
-    //     $recaptcha_response = trim($_POST['g-recaptcha-response']);
-    //     $recaptcha_remote_ip = $_SERVER['REMOTE_ADDR'];
-
-    //     $recaptcha_api = "https://www.google.com/recaptcha/api/siteverify?" .
-    //         http_build_query(
-    //             array(
-    //                 'secret' => $recaptcha_secret,
-    //                 'response' => $recaptcha_response,
-    //                 'remoteip' => $recaptcha_remote_ip
-    //             )
-    //         );
-    //     $response = json_decode(file_get_contents($recaptcha_api), true);
-    // }
-    // if (isset($response) && $response['success'] == true) { // ตรวจสอบสำเร็จ 
-    //     echo "Successful!"; // ทำคำสั่งเพิ่มข้อมูลหรืออื่นๆ 
 
     $txt_email = $_POST['useremail'];
     $txt_password = $_POST['password'];
