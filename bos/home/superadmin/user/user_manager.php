@@ -12,7 +12,7 @@ include "../../../bos/function/function.php"
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-header  border-left-warning text-primary ">
+            <div class="card-header  border-left-primary text-primary ">
 
                 <div class="row  mx-auto">
                     <div class="col-lg-10 col-md-10 col-sm-8 col-xs-6 ">
@@ -22,7 +22,7 @@ include "../../../bos/function/function.php"
                         </h4>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
-                        <button type="button" name="add" id="add_button" data-toggle="modal" data-target="#c_user" class="btn btn-success btn-xs">เพิ่มข้อมูลผู้ใช้งาน
+                        <button type="button" name="add" id="add_button" data-toggle="modal" data-target="#c_user" class="btn btn-primary btn-xs">เพิ่มข้อมูลผู้ใช้งาน
                         </button>
                     </div>
                 </div>

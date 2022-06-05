@@ -18,20 +18,17 @@ include "../../../bos/function/function.php"
                     </div>
                 </div>
             </div>
-            <form id="Newsletter_ad">
+            <form id="Newsletter_ad" enctype="multipart/form-data">
                 <div class="card-body">
                     <div class="form-group col-md-12">
                         <div class="row">
-
                             <div class="col">
                                 <label for="url">วันเดือนปี</label>
                                 <div class="input-group">
                                     <div id="datepicker" class="input-group date">
-                                        <input class="form-control" type="text" name="n_date" readonly
-                                            placeholder="จดหมายข่าวประจำเดือน :" />
+                                        <input class="form-control" type="text" name="n_date" readonly placeholder="จดหมายข่าวประจำเดือน :" />
                                         <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary" type="button"><span
-                                                    class="input-group-addon">
+                                            <button class="btn btn-outline-secondary" type="button"><span class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </span>
                                             </button>
@@ -43,21 +40,22 @@ include "../../../bos/function/function.php"
                     </div>
                     <div class="form-group col-md-12">
                         <label for="b_name">ชื่อจดหมายข่าว</label>
-                        <input type="text" id="n_title" class="form-control" name="n_title"
-                            placeholder="กรุณากรอกชื่อจดหมายข่าว">
+                        <input type="text" id="n_title" class="form-control" name="n_title" placeholder="กรุณากรอกชื่อจดหมายข่าว">
                     </div>
                     <div class="form-group col-md-12">
-                        <div class="form-group">
-                            <label for="">รายละเอียดจดหมายข่าว</label>
-                            <small id="msg" class="text-danger"></small>
-                            <textarea class="form-group col-md-12" class="textarea" name="n_detail" id="detail"
-                                name="n_detail"></textarea>
-                        </div>
+                        <label for="b_name">รายละเอียด</label>
+                        <textarea type="text" id="n_detail" class="form-control" name="n_detail" placeholder="กรุณากรอกชื่อรายละเอียด"></textarea>
+                    </div>
+                    <div class="form-group col-md-12">
+
+                        <label for="nf_name" class="form-label">กรุณาอัพโหลดไฟล์ PDF</label>
+                        <input id="nf_name" type="hidden" name="nf_name">
+                        <input class="form-control" type="file" name="nf_file" id="nf_file">
 
                     </div>
+
                     <input type="hidden" name="n_user_id" value="<?php echo $_SESSION['user']['id'] ?>" />
-                    <button type="submit" disabled class="btn btn-primary btn-block mx-auto w-100" id="submit"
-                        name="submit">บันทึกข้อมูล</button>
+                    <button type="submit" disabled class="btn btn-primary btn-block mx-auto w-100" id="submit" name="submit">บันทึกข้อมูล</button>
             </form>
         </div>
     </div>

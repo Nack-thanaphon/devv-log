@@ -6,7 +6,7 @@ header('Access-Control-Allow-Credentials: true');
 include "../../database/connect.php";
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
-    $select_stmt = $conn->prepare("SELECT * FROM tbl_news INNER JOIN  tbl_news_type ON  tbl_news_type.n_type_id = tbl_news.n_type");
+    $select_stmt = $conn->prepare("SELECT * FROM tbl_news INNER JOIN  tbl_news_type ON  tbl_news_type.n_type_id = tbl_news.n_type ORDER BY n_id ASC");
     $select_stmt->execute();
 
     $response = array();

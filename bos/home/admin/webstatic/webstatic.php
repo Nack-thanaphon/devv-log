@@ -6,11 +6,11 @@ if (empty($_SESSION['user'])) {
 }
 ?>
 
-<?php include "./include/header.php"; ?>
+<?php include "../../include/admin_header.php"; ?>
 
 <body id="page-top">
     <div id="wrapper">
-        <?php include "./include/navbar.php"; ?>
+        <?php include "../../include/admin_navbar.php"; ?>
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
             <div id="content">
@@ -22,7 +22,7 @@ if (empty($_SESSION['user'])) {
                     </button>
 
                     <ul class="navbar-nav ml-auto">
-                        <?php include "./include/topbar.php"; ?>
+                        <?php include "../../include/topbar.php"; ?>
                     </ul>
 
                 </nav>
@@ -61,7 +61,7 @@ if (empty($_SESSION['user'])) {
     <!-- Logout Modal-->
 
 
-    <?php include "./include/footer.php"; ?>
+    <?php include "../../include/footer.php"; ?>
     <script>
         $(document).ready(function() {
             let ip = $('#web_static').val();

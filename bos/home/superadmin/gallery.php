@@ -1,5 +1,5 @@
 <?php
-include "./include/header.php";
+include "../../include/superadmin_header.php";
 include "../../database/connect.php";
 
 // checking user logged or not
@@ -10,7 +10,7 @@ if (empty($_SESSION['user'])) {
 
 <body id="page-top">
     <div id="wrapper">
-        <?php include "./include/navbar.php"; ?>
+        <?php include "../../include/navbar.php"; ?>
         <div id="content-wrapper" class="d-flex flex-column">
 
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -18,13 +18,13 @@ if (empty($_SESSION['user'])) {
                     <i class="fa fa-bars"></i>
                 </button>
                 <ul class="navbar-nav ml-auto">
-                    <?php include "./include/topbar.php"; ?>
+                    <?php include "../../include/topbar.php"; ?>
                 </ul>
             </nav>
             <div class="container-fluid">
                 <?php include "./gallery/gallery_manager.php" ?>
-                <?php include "./include/footer.php"; ?>
-                <?php include "./include/script.php"; ?>
+                <?php include "../../include/footer.php"; ?>
+                <?php include "../../include/script.php"; ?>
             </div>
         </div>
     </div>
@@ -43,10 +43,12 @@ if (empty($_SESSION['user'])) {
                 },
             }).done(function(data) {
                 let tableData = []
+                let n = 1
                 data = data.result;
                 for (var i = 0; i < data.length; i++) {
                     tableData.push([
-                        `${data[i].id}`,
+
+                        `${n++}`,
                         `${data[i].name}`,
                         `${data[i].total}`,
                         `${data[i].size}`,
@@ -84,6 +86,9 @@ if (empty($_SESSION['user'])) {
             function initDataTables(tableData) { // สร้าง datatable
                 $('#g_table').DataTable({
                     data: tableData,
+                    order: [
+                        ['0', 'desc']
+                    ],
                     columns: [{
                             title: "ลำดับที่",
                             className: "align-middle",
@@ -284,16 +289,22 @@ if (empty($_SESSION['user'])) {
                         var f = files[i]
                         var fileReader = new FileReader();
                         fileReader.onload = (function(e) {
-                            var file = e.target;
-                            $("<div class=\"img-thumb-wrapper card shadow m-2 \">" +
-                                "<img class=\"img-thumb\" src=\"" + e.target.result +
-                                "\" title=\"" + file.name + "\"/>" +
-                                "<br/><span class=\"remove\">ลบ</span>" +
-                                "</div>").insertAfter("#preview");
-                            $(".remove").click(function() {
-                                $(this).parent(".img-thumb-wrapper").remove();
-                            });
+                            let file = e.target;
+                            let html = ''
+                            html += `<li class="row m-0 p-0 mb-3 img_load ">
+                                    <div class="col-4 w-100 ">
+                                        <img src="${e.target.result}" width="50px" alt="">
+                                    </div>
+                                    <div class="col-6">
+                                        <p></p>
+                                    </div>
+                                    <button class="col-2 btn btn-danger" id="remove">ลบ</button>
+                                    </li>`
+                            $(html).insertAfter("#preview");
 
+                            $("#remove").click(function() {
+                                $(this).parent(".img_load").remove();
+                            });
                         });
                         fileReader.readAsDataURL(f);
                     }

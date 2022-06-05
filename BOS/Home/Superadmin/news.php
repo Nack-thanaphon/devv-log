@@ -1,5 +1,5 @@
 <?php
-include "./include/header.php";
+include "../../include/superadmin_header.php";
 include "../../database/connect.php";
 
 // checking user logged or not
@@ -10,7 +10,7 @@ if (empty($_SESSION['user'])) {
 
 <body id="page-top">
     <div id="wrapper">
-        <?php include "./include/navbar.php"; ?>
+        <?php include "../../include/navbar.php"; ?>
         <div id="content-wrapper" class="d-flex flex-column">
 
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -18,13 +18,13 @@ if (empty($_SESSION['user'])) {
                     <i class="fa fa-bars"></i>
                 </button>
                 <ul class="navbar-nav ml-auto">
-                    <?php include "./include/topbar.php"; ?>
+                    <?php include "../../include/topbar.php"; ?>
                 </ul>
             </nav>
             <div class="container-fluid">
                 <?php include "./news/news_manager.php" ?>
-                <?php include "./include/footer.php"; ?>
-                <?php include "./include/script.php"; ?>
+                <?php include "../../include/footer.php"; ?>
+                <?php include "../../include/script.php"; ?>
             </div>
         </div>
     </div>
@@ -38,10 +38,11 @@ if (empty($_SESSION['user'])) {
                 data: {},
             }).done(function(data) {
                 let tableData = []
+                let n = 1
                 data = data.result;
                 for (var i = 0; i < data.length; i++) {
                     tableData.push([
-                        `<a href="https://www.aun-hpn.or.th/single_news.php?id=${data[i].id}" target="_blank" class="btn btn-outline-primary p-1"> ${data[i].id} </a>`,
+                        `${n++}`,
                         `<img src="../../${data[i].image}" class="img-fluid" width="100px">`,
                         `${data[i].name}`,
                         `${data[i].type}`,
@@ -73,6 +74,9 @@ if (empty($_SESSION['user'])) {
             function initDataTables(tableData) { // สร้าง datatable
                 $('#logs').DataTable({
                     data: tableData,
+                    order: [
+                        ['0', 'desc']
+                    ],
                     columns: [{
                             title: "ลำดับที่",
                             className: "align-middle"
@@ -234,6 +238,7 @@ if (empty($_SESSION['user'])) {
                         '" class="p-1 w-100" width="100px">');
                     $('#etype').val(data[0].n_type);
                     $('#en_date').val(data[0].n_date);
+                    $('#en_create').val(data[0].create_at);
                     $('#eurl').val(data[0].url);
                     $('#edetail').summernote('pasteHTML', data[0].n_detail);
                     $('#enews').modal('show');
@@ -258,7 +263,9 @@ if (empty($_SESSION['user'])) {
                     image: $("#e_imgname").val(),
                     type: $("#etype").val(),
                     url: $("#eurl").val(),
-                    date: $('#en_date').val()
+                    date: $('#en_date').val(),
+                    date_create: $('#en_create').val()
+
                 },
                 success: function(response) {
                     Swal.fire({
@@ -280,18 +287,22 @@ if (empty($_SESSION['user'])) {
         $(function() {
             $("#datepicker,#edatepicker").datepicker({
                 todayHighlight: true, // to highlight the today's date
-                format: 'yyyy-mm-dd',
+                format: "MM yyyy",
+                startView: "months",
+                minViewMode: "months",
                 autoclose: true,
                 todayHighlight: true
             }).datepicker('update', new Date());
         });
 
-        var dp = $("#datepicker,#edatepicker").datepicker({
-            format: "MM yyyy",
-            startView: "months",
-            minViewMode: "months"
+        $(function() {
+            $("#news_date,#enews_date").datepicker({
+                todayHighlight: true, // to highlight the today's date
+                format: 'dd MM yyyy',
+                autoclose: true,
+                todayHighlight: true
+            }).datepicker('update', new Date());
         });
-
 
 
         $(document).ready(function() { // เรียกใช้งาน Summernote

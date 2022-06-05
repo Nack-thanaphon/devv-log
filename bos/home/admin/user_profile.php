@@ -1,5 +1,5 @@
 <?php
-include "./include/header.php";
+include "../../include/admin_header.php";
 include "../../database/connect.php";
 
 // checking user logged or not
@@ -10,7 +10,7 @@ if (empty($_SESSION['user'])) {
 
 <body id="page-top">
     <div id="wrapper">
-        <?php include "./include/navbar.php"; ?>
+        <?php include "../../include/admin_navbar.php"; ?>
         <div id="content-wrapper" class="d-flex flex-column">
 
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -18,13 +18,13 @@ if (empty($_SESSION['user'])) {
                     <i class="fa fa-bars"></i>
                 </button>
                 <ul class="navbar-nav ml-auto">
-                    <?php include "./include/topbar.php"; ?>
+                    <?php include "../../include/topbar.php"; ?>
                 </ul>
             </nav>
             <div class="container-fluid">
                 <?php include "./user/user_profile.php" ?>
-                <?php include "./include/footer.php"; ?>
-                <?php include "./include/script.php"; ?>
+                <?php include "../../include/footer.php"; ?>
+                <?php include "../../include/script.php"; ?>
             </div>
         </div>
     </div>

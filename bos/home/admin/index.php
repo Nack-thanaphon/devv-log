@@ -1,19 +1,9 @@
-<?php
-include "../../database/connect.php";
-include "./include/header.php";
-
-// checking user logged or not
-if (($_SESSION['user']['user_role_id']) != '2') {
-    echo "<script>alert('คุณไม่ได้รับอนุญาติ');
-    window.location.href='../../../auth/logout.php';
-    </script>";
-}
-?>
+<?php include "../../include/admin_header.php"; ?>
 
 
 <body id="page-top">
     <div id="wrapper">
-        <?php include "./include/navbar.php"; ?>
+        <?php include "../../include/admin_navbar.php"; ?>
         <div id="content-wrapper" class="d-flex flex-column">
 
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -21,17 +11,17 @@ if (($_SESSION['user']['user_role_id']) != '2') {
                     <i class="fa fa-bars"></i>
                 </button>
                 <ul class="navbar-nav ml-auto">
-                    <?php include "./include/topbar.php"; ?>
+                    <?php include "../../include/topbar.php"; ?>
                 </ul>
             </nav>
             <div class="container-fluid">
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> ออกรายงาน Excel</a>
+                    <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> ออกรายงาน Excel</a> -->
                 </div>
                 <?php include "./dashboard/dashboard.php" ?>
-                <?php include "./include/footer.php"; ?>
-                <?php include "./include/script.php"; ?>
+                <?php include "../../include/footer.php"; ?>
+                <?php include "../../include/script.php"; ?>
             </div>
         </div>
     </div>
@@ -253,7 +243,7 @@ if (($_SESSION['user']['user_role_id']) != '2') {
             });
         }
     </script>
-    </script>
+   
 
 
 

@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             ':user_id' => $_POST["user_id"],
             ':n_date' => $_POST["n_date"],
             ':n_image'  => $_POST['n_imgname'],
-            ':create_at'  => $now,
+            ':create_at'  => $_POST['n_create'],
             ':n_status' => '1',
             ':n_views' => '0'
         )

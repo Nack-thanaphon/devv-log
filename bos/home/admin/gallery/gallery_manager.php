@@ -226,7 +226,8 @@ include "../../function/function.php"
                             <small class="text-danger text-center py-3" id="msg">อัพโหลดครั้งล่ะ 10 ภาพ เท่านั้น
                                 !</small>
                         </div>
-                        <div id="preview" class="row m-0 p-0 ">
+                        <div id="preview" class="row m-0  p-0 ">
+
                         </div>
                         <button id="submit" type="submit" class="btn btn-primary w-100">อัพโหลดรูปภาพ</button>
                     </div>

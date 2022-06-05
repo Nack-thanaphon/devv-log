@@ -3,7 +3,7 @@ include "../../../bos/function/function.php"
 ?>
 <div class="row">
     <div class="col-md-4  text-white">
-        <div class="panel panel-default text-center shadow-sm bg-primary">
+        <div class="panel panel-head text-center shadow-sm ">
             <div class="panel-heading"><strong>จำนวนผู้เข้าชมเว็บไซต์</strong></div>
             <div class="panel-body" align="center">
                 <h1><?php echo web_count_static($conn); ?> </h1>
@@ -17,7 +17,7 @@ include "../../../bos/function/function.php"
 
 
     <div class="col-md-4  text-white">
-        <div class="panel panel-default text-center shadow-sm bg-warning">
+        <div class="panel panel-head text-center shadow-sm ">
             <div class="panel-heading "><strong>จำนวนเอกสาร</strong></div>
             <div class="panel-body" align="center">
                 <h1><?php echo  count_total_file($conn) ?></h1>
@@ -29,7 +29,7 @@ include "../../../bos/function/function.php"
     </div>
 
     <div class="col-md-4   text-white">
-        <div class="panel panel-default text-center shadow-sm bg-info">
+        <div class="panel panel-head text-center shadow-sm ">
             <div class="panel-heading"><strong>จำนวนข่าวสาร</strong></div>
             <div class="panel-body" align="center">
                 <h1><?php echo count_total_news($conn); ?></h1>

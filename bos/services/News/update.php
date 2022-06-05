@@ -21,6 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     $image = $_POST['image'];
     $detail = $_POST['detail'];
     $date = $_POST['date'];
+    $date_create = $_POST['date_create'];
+    
 
 
     $query = " UPDATE tbl_news SET `n_name` = '" . $name . "', 
@@ -28,7 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     `url` = '" . $url . "', 
     `n_image` = '" . $image . "', 
     `n_detail` = '" . $detail . "',
-    `n_date` = '" . $date . "'
+    `n_date` = '" . $date . "',
+    `create_at` = '" . $date_create . "'
+
   
 
     
