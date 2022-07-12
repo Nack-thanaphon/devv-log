@@ -1,5 +1,5 @@
 <?php
-include "../../include/superadmin_header.php";
+include "../../include/editer_header.php";
 include "../../database/connect.php";
 
 // checking user logged or not
@@ -10,7 +10,7 @@ if (empty($_SESSION['user'])) {
 
 <body id="page-top">
     <div id="wrapper">
-        <?php include "../../include/navbar.php"; ?>
+        <?php include "../../include/admin_navbar.php"; ?>
         <div id="content-wrapper" class="d-flex flex-column">
 
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -52,22 +52,22 @@ if (empty($_SESSION['user'])) {
                         `${data[i].name}`,
                         `${data[i].total}`,
                         `${data[i].size}`,
-
-                        `<div class="btn-group w-100 " role="group">
-                <button type="button" name="upload" data-id="${data[i].id}" data-name="${data[i].name}" class="upload btn btn-primary"><p class="m-auto p-0 font-weight-bold ">
-                <i class="fas fa-upload m-0 p-0"></i>
-                อัพโหลด</p></button> 
-                <button type="button" name="view_files" data-id="${data[i].id}" data-name="${data[i].name}" class="view_files btn btn-success "><p class="m-0 p-0 font-weight-bold ">
-                <i class="fas fa-eye"></i>
-                ดู</p></button>
-                </div>`,
-                        `<div class="btn-group w-100" role="group">
+                        `<div class="btn-group" role="group">
                 <button type="button" name="update"  data-id="${data[i].id}" data-name="${data[i].name}"  class="update btn btn-warning "><p class="m-0 p-0 font-weight-bold ">
                 <i class="fas fa-pen m-0 p-0"></i>
-                แก้ไข</p></button>
+                </p></button>
                 <button type="button" name="delete"  data-id="${data[i].id}" data-name="${data[i].name}" class="delete btn btn-danger"><p class="m-0 p-0 font-weight-bold ">
                 <i class="fas fa-trash m-0 p-0"></i>
-                ลบ</p></button>
+                </p></button>
+                </div>`,
+
+                        `<div class="btn-group mx-auto  " role="group">
+                <button type="button" name="upload" data-id="${data[i].id}" data-name="${data[i].name}" class="upload btn btn-primary"><p class="m-auto p-0 font-weight-bold ">
+                <i class="fas fa-upload m-0 p-0"></i>
+                </p></button> 
+                <button type="button" name="view_files" data-id="${data[i].id}" data-name="${data[i].name}" class="view_files btn btn-success "><p class="m-0 p-0 font-weight-bold ">
+                <i class="fas fa-eye"></i>
+                </p></button>
                 </div>`,
                     ]);
                 };
@@ -90,7 +90,7 @@ if (empty($_SESSION['user'])) {
                         ['0', 'desc']
                     ],
                     columns: [{
-                            title: "ลำดับ",
+                            title: "ลำดับที่",
                             className: "align-middle",
 
                         },
@@ -102,23 +102,23 @@ if (empty($_SESSION['user'])) {
                         },
 
                         {
-                            title: "จำนวน",
+                            title: "จำนวนภาพ",
                             className: "align-middle",
 
                         },
 
                         {
-                            title: "ขนาด",
+                            title: "ขนาดอัลบั้ม",
+                            className: "align-middle"
+                        },
+                        {
+                            title: "จัดการ",
                             className: "align-middle"
                         },
 
                         {
                             title: "อัพโหลด | เรียกดู",
-                            className: "text-center text-sm"
-                        },
-                        {
-                            title: "จัดการ",
-                            className: "text-center"
+                            className: "align-middle"
                         },
                     ],
 
@@ -280,8 +280,39 @@ if (empty($_SESSION['user'])) {
             $('#g_id').val(id);
         });
 
+        $(document).ready(function() {
+            if (window.File && window.FileList && window.FileReader) {
+                $("#files").on("change", function(e) {
+                    var files = e.target.files,
+                        filesLength = files.length;
+                    for (var i = 0; i < filesLength; i++) {
+                        var f = files[i]
+                        var fileReader = new FileReader();
+                        fileReader.onload = (function(e) {
+                            let file = e.target;
+                            let html = ''
+                            html += `<li class="row m-0 p-0 mb-3 img_load ">
+                                    <div class="col-4 w-100 ">
+                                        <img src="${e.target.result}" width="50px" alt="">
+                                    </div>
+                                    <div class="col-6">
+                                        <p></p>
+                                    </div>
+                                    <button class="col-2 btn btn-danger" id="remove">ลบ</button>
+                                    </li>`
+                            $(html).insertAfter("#preview");
 
-
+                            $("#remove").click(function() {
+                                $(this).parent(".img_load").remove();
+                            });
+                        });
+                        fileReader.readAsDataURL(f);
+                    }
+                });
+            } else {
+                alert("Your browser doesn't support to File API")
+            }
+        });
 
 
         $('#files').change(function() {
@@ -305,29 +336,27 @@ if (empty($_SESSION['user'])) {
             form_data.append("folder", folder)
 
             // Read selected files
-            for (var i = 0; i < totalfiles; i++) {
-                form_data.append("files[]", document.getElementById('files').files[i]);
+            for (var index = 0; index < totalfiles; index++) {
+                form_data.append("files[]", document.getElementById('files').files[index]);
             }
-
-            console.log(form_data)
-            // $.ajax({
-            //     url: "../../services/Gallery/upload.php",
-            //     type: 'POST',
-            //     data: form_data,
-            //     id,
-            //     contentType: false,
-            //     cache: false,
-            //     processData: false,
-            //     success: function(response) {
-            //         Swal.fire({
-            //             text: 'อัพเดตข้อมูลเรียบร้อย',
-            //             icon: 'success',
-            //             confirmButtonText: 'ตกลง',
-            //         }).then((response) => {
-            //             location.reload();
-            //         });
-            //     }
-            // });
+            $.ajax({
+                url: "../../services/Gallery/upload.php",
+                type: 'POST',
+                data: form_data,
+                id,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(response) {
+                    Swal.fire({
+                        text: 'อัพเดตข้อมูลเรียบร้อย',
+                        icon: 'success',
+                        confirmButtonText: 'ตกลง',
+                    }).then((response) => {
+                        location.reload();
+                    });
+                }
+            });
         });
 
         $(document).on("click", ".view_files", function() {

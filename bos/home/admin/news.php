@@ -294,11 +294,10 @@ if (empty($_SESSION['user'])) {
                 todayHighlight: true
             }).datepicker('update', new Date());
         });
-
         $(function() {
             $("#news_date,#enews_date").datepicker({
                 todayHighlight: true, // to highlight the today's date
-                format: 'dd MM yyyy',
+                format: 'yyyy-mm-dd',
                 autoclose: true,
                 todayHighlight: true
             }).datepicker('update', new Date());

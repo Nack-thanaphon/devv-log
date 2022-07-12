@@ -1,5 +1,5 @@
 <?php
-include "../../include/superadmin_header.php";
+include "../../include/editer_header.php";
 include "../../database/connect.php";
 
 // checking user logged or not

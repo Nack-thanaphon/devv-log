@@ -1,8 +1,9 @@
-<?php include "../../include/superadmin_header.php"; ?>
+<?php include "../../include/editer_header.php"; ?>
+
 
 <body id="page-top">
     <div id="wrapper">
-        <?php include "../../include/navbar.php"; ?>
+        <?php include "../../include/admin_navbar.php"; ?>
         <div id="content-wrapper" class="d-flex flex-column">
 
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -24,8 +25,6 @@
             </div>
         </div>
     </div>
-
-
 
     <script>
         $(document).ready(function() {
@@ -244,7 +243,7 @@
             });
         }
     </script>
-    </script>
+   
 
 
 

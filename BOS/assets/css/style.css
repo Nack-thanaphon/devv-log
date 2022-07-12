@@ -31,7 +31,7 @@ html {
     box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
 }
 
-.panel-heading {
+.panel-head {
     color:var(--forth);
     background-color:var(--secound);
     border-color: #dddddd;

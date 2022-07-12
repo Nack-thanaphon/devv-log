@@ -1,5 +1,5 @@
 <?php
-include "../../include/superadmin_header.php";
+include "../../include/editer_header.php";
 include "../../database/connect.php";
 
 // checking user logged or not
@@ -8,11 +8,11 @@ if (empty($_SESSION['user'])) {
 }
 ?>
 
+
 <body id="page-top">
     <div id="wrapper">
         <?php include "../../include/admin_navbar.php"; ?>
         <div id="content-wrapper" class="d-flex flex-column">
-
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
@@ -22,19 +22,21 @@ if (empty($_SESSION['user'])) {
                 </ul>
             </nav>
             <div class="container-fluid">
-                <?php include "./news/news_manager.php" ?>
+                <?php include "./file/file_manager.php" ?>
                 <?php include "../../include/footer.php"; ?>
                 <?php include "../../include/script.php"; ?>
             </div>
         </div>
     </div>
 
+
+
     <script>
         $(function() { // เรียกใช้งาน datatable
             $.ajax({
                 type: "GET",
                 dataType: "JSON",
-                url: "../../services/News/",
+                url: "../../services/File/",
                 data: {},
             }).done(function(data) {
                 let tableData = []
@@ -42,15 +44,16 @@ if (empty($_SESSION['user'])) {
                 data = data.result;
                 for (var i = 0; i < data.length; i++) {
                     tableData.push([
+
                         `${n++}`,
-                        `<img src="../../${data[i].image}" class="img-fluid" width="100px">`,
                         `${data[i].name}`,
+                        `${data[i].group}`,
                         `${data[i].type}`,
-                        `<input class="toggle-event"  id="toggle_news${data[i].id}" data-id="${data[i].id}" type="checkbox" name="status" 
-                ${data[i].n_status ? 'checked' : ''} data-toggle="toggle" data-on="เปิด" 
+                        `<input class="toggle-event"  id="toggle_file${data[i].id}" data-id="${data[i].id}" type="checkbox" name="status" 
+                ${data[i].f_status ? 'checked' : ''} data-toggle="toggle" data-on="เปิด" 
                         data-off="ปิด" data-onstyle="success" data-style="ios">`,
                         `<div class="btn-group" role="group">
-                        <button " type="button" class="btn btn-warning edit_data" data-toggle="modal" data-id="${data[i].id}"  >
+                        <button " type="button" class="btn btn-warning edit_file_upload" data-toggle="modal" data-id="${data[i].id}"  >
                             <i class="far fa-edit"></i> แก้ไข
                         </button>
                         <button type="button" class="btn btn-danger" id="delete" data-id="${data[i].id}">
@@ -67,43 +70,47 @@ if (empty($_SESSION['user'])) {
                     icon: 'error',
                     confirmButtonText: 'ตกลง',
                 }).then(function() {
-                    location.assign('./')
+                    // location.assign('./')
                 })
             })
 
             function initDataTables(tableData) { // สร้าง datatable
-                $('#logs').DataTable({
+                $('#file_table').DataTable({
                     data: tableData,
                     order: [
                         ['0', 'desc']
                     ],
                     columns: [{
-                            title: "ลำดับที่",
-                            className: "align-middle"
-                        },
-                        {
-                            title: "รูปภาพ",
-                            className: "align-middle"
-                        },
-                        {
-                            title: "หัวข้อข่าว",
+                            title: "ลำดับ",
                             className: "align-middle",
-                            width: "30%"
+                            width: "10%"
                         },
 
                         {
-                            title: "ชนิดข่าว",
+                            title: "หัวข้อเอกสาร",
                             className: "align-middle",
-
+                            width: "60%"
                         },
-
+                        {
+                            title: "ประเภท",
+                            className: "align-middle",
+                            width: "20%"
+                        },
+                        {
+                            title: "ชนิด",
+                            className: "align-middle",
+                            width: "10%"
+                        },
                         {
                             title: "สถานะ",
-                            className: "align-middle"
+                            className: "align-middle",
+                            width: "10%"
                         },
+
                         {
                             title: "จัดการ",
-                            className: "align-middle"
+                            className: "align-middle",
+                            width: "20%"
                         }
                     ],
                     initComplete: function() { // เรียกใช้งาน ลบข้อมูล datatable
@@ -121,8 +128,7 @@ if (empty($_SESSION['user'])) {
                                 if (result.isConfirmed) {
                                     $.ajax({
                                         type: "POST",
-                                        url: "../../services/News/delete.php",
-
+                                        url: "../../services/File/delete.php",
                                         data: {
                                             id: id
                                         }
@@ -146,7 +152,6 @@ if (empty($_SESSION['user'])) {
                     },
                     responsive: {
                         details: {
-
                             renderer: $.fn.dataTable.Responsive.renderer.tableAll({
                                 tableClass: 'table'
                             })
@@ -166,63 +171,52 @@ if (empty($_SESSION['user'])) {
                     }
                 })
             }
+
         })
 
+        $(document).ready(function(e) {
 
+            $('#f_file').on('change', function() {
+                let validExt = ['docx', 'pdf', ]
+                var extension = this.files[0].type.split('/')[1]
+                if (validExt.indexOf(extension) == -1) {
+                    $("#submit").attr('disabled', true);
+                    $('#msg_file').show();
+                    $("#msg_file").html("คุณอัพโหลดไฟล์ไม่ถูกต้อง ไฟล์ต้องเป็น .pdf เท่านั้น");
+                } else {
+                    $("#submit").attr('disabled', false);
+                }
+            })
+        })
 
-
-        $('#formData').on('submit', function(e) { // เรียกใช้งาน เพิ่มข้อมูล (สำคัญ)
-
-
-            let name = $("#n_name").val();
-            let image = $("#n_image").val();
-            let date = $("#n_date").val();
-            let datail = $("#detail").summernote();
-
-            if (name == "") {
-                $('#message_name').show();
-                $('#message_name').html('กรุณากรอกหัวข้อข่าว');
-                return false
-            }
-            if (image == "") {
-                $('#message_img').show();
-                $('#message_img').html('กรุณาอัพภาพหน้าปก');
-                return false
-            }
-            if (datail == "") {
-                $('#message_detail').show();
-                $('#message_detail').html('กรุณาใส่ข้อมูลข่าว');
-                return false
-            } else {
-                let btn_save = $("#news_save").attr('disabled', true);
-                e.preventDefault()
+        $(document).ready(function(e) {
+            $("#fileupload").on('submit', (function(e) {
+                e.preventDefault();
                 $.ajax({
-                    type: 'POST',
-                    url: "../../services/News/create.php",
-                    data: $('#formData').serialize()
-
+                    url: "../../services/File/create.php",
+                    type: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
                 }).done(function(resp) {
                     Swal.fire({
                         text: 'เพิ่มข้อมูลเรียบร้อย',
                         icon: 'success',
                         confirmButtonText: 'ตกลง',
                     }).then((result) => {
-                        location.assign('./news.php');
+                        location.reload();
                     });
                 })
-            }
 
-
-
+            }));
         });
 
 
-
-
-        $(document).on('click', '.edit_data', function() { // เรียกใช้งาน แก้ไขข้อมูล (MOdal previews)
+        $(document).on('click', '.edit_file_upload', function() { // เรียกใช้งาน แก้ไขข้อมูล (MOdal previews)
             let id = $(this).data('id');
             $.ajax({
-                url: "../../services/News/update.php",
+                url: "../../services/File/update.php",
                 method: "GET",
                 data: {
                     id: id
@@ -230,42 +224,36 @@ if (empty($_SESSION['user'])) {
                 dataType: "json",
                 success: function(data) {
 
-                    $('#eid').val(data[0].n_id);
-                    $('#ename').val(data[0].n_name);
-                    $('#eimage').html(data[0].n_image);
-                    $('#e_imgname').val(data[0].n_image);
-                    $('#eshowimg').html('<img src="../../' + data[0].n_image +
-                        '" class="p-1 w-100" width="100px">');
-                    $('#etype').val(data[0].n_type);
-                    $('#en_date').val(data[0].n_date);
-                    $('#en_create').val(data[0].create_at);
-                    $('#eurl').val(data[0].url);
-                    $('#edetail').summernote('pasteHTML', data[0].n_detail);
-                    $('#enews').modal('show');
+                    $('#ef_id').val(data[0].f_id);
+                    $('#ef_name').val(data[0].f_name);
+                    $('#ef_group').val(data[0].f_group);
+                    $('#efile_name').html(data[0].f_file);
+                    $('#ef_fname').val(data[0].f_file);
+                    $('#ef_detail').val(data[0].f_detail);
+                    $('#ef_date').val(data[0].f_date);
+                    $('#ef_by').val(data[0].f_by);
+                    $('#eadfile_uploads').modal('show');
+
                 }
             });
         });
 
 
 
-        $('#eformData').on('submit', function(e) { // เรียกใช้งาน [บันทึกข้อมูลแก้ไข] (สำคัญ)
-            e.preventDefault();
-            let btn_save = $("#enews_save").attr('disabled', true);
+        $('#efileupload').on('submit', function(e) { // เรียกใช้งาน [บันทึกข้อมูลแก้ไข] (สำคัญ)
 
+            e.preventDefault();
             $.ajax({
                 type: "POST",
                 dataType: "JSON",
-                url: "../../services/News/update.php",
+                url: "../../services/File/update.php",
                 data: {
-                    id: $('#eid').val(),
-                    name: $("#ename").val(),
-                    detail: $("#edetail").val(),
-                    image: $("#e_imgname").val(),
-                    type: $("#etype").val(),
-                    url: $("#eurl").val(),
-                    date: $('#en_date').val(),
-                    date_create: $('#en_create').val()
-
+                    id: $('#ef_id').val(),
+                    name: $('#ef_name').val(),
+                    group: $('#ef_group').val(),
+                    detail: $('#ef_detail').val(),
+                    date: $('#ef_date').val(),
+                    by: $('#ef_by').val(),
                 },
                 success: function(response) {
                     Swal.fire({
@@ -273,30 +261,28 @@ if (empty($_SESSION['user'])) {
                         icon: 'success',
                         confirmButtonText: 'ตกลง',
                     }).then((result) => {
-                        location.assign('./news.php');
+                        location.reload();
+
                     });
-                    // console.log("good", response);
+                    console.log("good", response);
+
                 },
                 error: function(err) {
-                    // console.log("bad", err);
+                    console.log("bad", err);
                 }
             })
 
         })
 
         $(function() {
-            $("#datepicker,#edatepicker").datepicker({
+            $("#datepicker").datepicker({
                 todayHighlight: true, // to highlight the today's date
-                format: "MM yyyy",
-                startView: "months",
-                minViewMode: "months",
+                format: 'yyyy-mm-dd',
                 autoclose: true,
                 todayHighlight: true
             }).datepicker('update', new Date());
-        });
 
-        $(function() {
-            $("#news_date,#enews_date").datepicker({
+            $(".date").datepicker({
                 todayHighlight: true, // to highlight the today's date
                 format: 'yyyy-mm-dd',
                 autoclose: true,
@@ -305,103 +291,11 @@ if (empty($_SESSION['user'])) {
         });
 
 
-        $(document).ready(function() { // เรียกใช้งาน Summernote
-
-            $('#detail').summernote({
-                lang: 'Th-TH', // default: 'en-US'
-                height: 200,
-                focus: true
-            });
-            $('#edetail').summernote({
-                lang: 'ko-KR', // default: 'en-US'
-                height: 200,
-                focus: true
-            });
-        })
-
-
-
-
-
-
-        $("#n_image").change((e) => { // เรียกใช้งาน UPLOADFILE (สำคัญ)
-
-            var form_data = new FormData();
-            var ins = document.getElementById(e.target.id).files.length;
-
-            form_data.append("files[]", document.getElementById(e.target.id).files[0]);
-
-            $.ajax({
-                // url: './api/uploadfile.php', // point to server-side PHP script 
-                url: '../../services/News/uploadfile.php', // point to server-side PHP script
-                dataType: 'text', // what to expect back from the PHP script
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: form_data,
-                type: 'post',
-                success: function(response) {
-                    // console.log('response', response)
-                    $("#n_imgname").val(response)
-                },
-                error: function(err) {
-                    // console.log('bad', err)
-                }
-            });
-        })
-
-
-
-        $("#e_image").change((e) => { // เรียกใช้งาน UPLOADFILE (สำคัญ)
-
-            var form_data = new FormData();
-            var ins = document.getElementById(e.target.id).files.length;
-
-            form_data.append("files[]", document.getElementById(e.target.id).files[0]);
-
-            $.ajax({
-                // url: './api/uploadfile.php', // point to server-side PHP script 
-                url: '../../services/News/uploadfile.php', // point to server-side PHP script
-                dataType: 'text', // what to expect back from the PHP script
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: form_data,
-                type: 'post',
-                success: function(response) {
-                    // console.log('response', response)
-                    $("#e_imgname").val(response)
-                },
-                error: function(err) {
-                    // console.log('bad', err)
-                }
-            });
-        })
-
-
-
-        function preview_image(event) { // เรียกใช้งาน preview imagebefore (สำคัญ)
-            var reader = new FileReader();
-            reader.onload = function() {
-                var output = document.getElementById('showimg');
-                output.src = reader.result;
-            }
-            reader.readAsDataURL(event.target.files[0]);
-        }
-
-        function preview_eimage(event) { // เรียกใช้งาน preview เก่า (สำคัญ)
-            var reader = new FileReader();
-            reader.onload = function() {
-                var output = document.getElementById('update_showimg');
-                output.src = reader.result;
-            }
-            reader.readAsDataURL(event.target.files[0]);
-        }
-
+        $("#f_file").change(function() {
+            $("#file_name").text(this.files[0].name);
+        });
 
         $(document).on('change', '.toggle-event', function(e) { // เรียกใช้งาน สถานะ datatable
-            // console.log('e', 1)
-            // console.log('e', e.target.id)
 
             let id = $(this).data("id");
             let status = '';
@@ -417,7 +311,7 @@ if (empty($_SESSION['user'])) {
                     confirmButtonText: 'ตกลง',
                 }).then((result) => {
                     $.ajax({
-                        url: "../../services/News/status.php",
+                        url: "../../services/File/status.php",
                         method: "POST",
                         data: {
                             id: id,
@@ -430,6 +324,11 @@ if (empty($_SESSION['user'])) {
                     })
                 });
             }
+        });
+
+
+        $("#f_file").change(function() {
+            $("#file_name").text(this.files[0].name);
         });
     </script>
 
