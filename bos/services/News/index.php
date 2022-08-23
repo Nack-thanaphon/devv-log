@@ -6,7 +6,7 @@ header('Access-Control-Allow-Credentials: true');
 include "../../database/connect.php";
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
-    $select_stmt = $conn->prepare("SELECT * FROM tbl_news INNER JOIN  tbl_news_type ON  tbl_news_type.n_type_id = tbl_news.n_type ORDER BY n_id ASC");
+    $select_stmt = $conn->prepare("SELECT * FROM tbl_news INNER JOIN  tbl_news_type ON  tbl_news_type.type_id = tbl_news.type ORDER BY id ASC");
     $select_stmt->execute();
 
     $response = array();
@@ -17,22 +17,20 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
         extract($row);
 
         $status = '';
-        if ($row["n_status"] == '1') {
+        if ($row["status"] == '1') {
             $status = true;
         } else {
             $status = false;
         }
 
-
-
         $data_items = array(
-            "id" => $n_id,
-            "name" => $n_name,
-            "type" => $n_type,
+            "id" => $id,
+            "name" => $name,
+            "type" => $type,
             "url" => $url,
             "user_id" => $user_id,
-            "image" => $n_image,
-            "n_status" => $status,
+            "image" => $image,
+            "status" => $status,
         );
         array_push($response['result'], $data_items);
     }

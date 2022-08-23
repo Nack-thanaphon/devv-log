@@ -103,7 +103,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; MUGH | Mahidol University Global Health
+            <span>Copyright &copy; DEV-LOG. | Mahidol University Global Health
 
 
 

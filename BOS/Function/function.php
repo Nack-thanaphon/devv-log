@@ -11,10 +11,17 @@ function DateThai($strDate)
 
 function count_total_user($conn)
 {
-    $query = "SELECT * FROM tbl_user WHERE user_status='1'";
+    // $query = "SELECT * FROM tbl_user WHERE user_status='1'";
+    $query = "SELECT count(*) as abc FROM tbl_user WHERE user_status='1'";
     $statement = $conn->prepare($query);
     $statement->execute();
-    return $statement->rowCount();
+    $result = $statement->fetchAll();
+    $aaa = 0;
+    foreach ($result as $row) {
+        $aaa = $row["abc"];
+    };
+    // return $statement->rowCount();
+    return $aaa;
 }
 
 function count_total_news($conn)
@@ -44,13 +51,13 @@ function user_role($conn)
 
 function news_type($conn)
 {
-    $query = "SELECT * FROM tbl_news_type  ORDER BY n_type DESC ";
+    $query = "SELECT * FROM tbl_news_type  ORDER BY type DESC ";
     $statement = $conn->prepare($query);
     $statement->execute();
     $result = $statement->fetchAll();
     $output = '';
     foreach ($result as $row) {
-        $output .= '<option value="' . $row["n_type_id"] . '" >' . $row["n_type"] . '</option>';
+        $output .= '<option value="' . $row["type_id"] . '" >' . $row["type"] . '</option>';
     }
     return $output;
 }

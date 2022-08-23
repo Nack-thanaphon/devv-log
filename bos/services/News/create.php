@@ -8,25 +8,25 @@ include "../../database/connect.php";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $now = date("Y-m-d H:i:s");
-    $statement = $conn->prepare("INSERT INTO tbl_news (n_name, n_type,n_detail,n_image, url,user_id,n_status,n_views,n_date,create_at) 
-    VALUES (:n_name, :n_type, :n_detail,:n_image, :url,:user_id,:n_status,:n_views,:n_date,:create_at)");
+    $statement = $conn->prepare("INSERT INTO tbl_news (name,type,detail,image,url,user_id,status,views,date,create_at) 
+    VALUES (:name,:type,:detail,:image,:url,:user_id,:status,:views,:date,:create_at)");
     $result = $statement->execute(
         array(
-            ':n_name' => $_POST["n_name"],
-            ':n_type' => $_POST["n_type"],
-            ':n_detail' => $_POST["n_detail"],
+            ':name' => $_POST["name"],
+            ':type' => $_POST["type"],
+            ':detail' => $_POST["detail"],
             ':url' => $_POST["url"],
             ':user_id' => $_POST["user_id"],
-            ':n_date' => $_POST["n_date"],
-            ':n_image'  => $_POST['n_imgname'],
-            ':create_at'  => $_POST['n_create'],
-            ':n_status' => '1',
-            ':n_views' => '0'
+            ':date' => $_POST["date"],
+            ':image'  => $_POST['imgname'],
+            ':create_at'  => $_POST['create'],
+            ':status' => '1',
+            ':views' => '0'
         )
     );
     $response = [
         'status' => true,
-        'message' => 'Create Success'
+        'message' => 'CreateSuccess'
     ];
 }
 http_response_code(201);

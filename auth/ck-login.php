@@ -4,7 +4,7 @@ header('content-type: application/json');
 if (isset($_SESSION['user'])) {
     header("location:index.php");
 }
-require_once '../database/connect.php';
+require_once '../bos/database/connect.php';
 
 function generateRandomString($length = 10)
 {
@@ -48,30 +48,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             'user_position' => $row['user_role'],
                             'user_role_id' => $row['user_role_id'],
                         );
-                        $role = $_SESSION['user']['user_role_id'];
-                        //Redirecting user based on role
                         http_response_code(200);
-                        switch ($role) {
-                            case '1':
-                                echo json_encode("superadmin");
-                                break;
-                            case '2':
-                                echo json_encode("admin");
-                                break;
-                            case '3':
-                                echo json_encode("editer");
-                                break;
-                            case '4':
-                                echo json_encode("user");
-                                break;
-                        }
+                        echo json_encode(200);
                     } else {
                         $_SESSION['message'] = "ไอดีของคุณไม่สามารถใช้งานได้กรุณาติดต่อแอดมิน";
                         http_response_code(400);
                     }
                 } else {
                     $_SESSION['message'] = "ชื่อและรหัสผ่านผู้ใช้งานไม่ตรงกัน";
-                    http_response_code(400);
+                    http_response_code(300);
                 }
             }
         } else {
@@ -82,7 +67,4 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $_SESSION['message'] = "เกิดข้อผิดพลาด";
         http_response_code(405);
     }
-    // } else {
-    //     echo "Access denied!";
-    // }
 }

@@ -20,37 +20,37 @@ function DateThai($strDate)
 
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
-
-    $select_stmt = $conn->prepare(
-        "SELECT * FROM tbl_news 
+    if (isset($_GET["id"])) {
+        $stmt = $conn->prepare(
+            "SELECT * FROM tbl_news 
         INNER JOIN  tbl_news_type ON  tbl_news_type.type_id = tbl_news.type 
         INNER JOIN  tbl_user ON  tbl_user.user_id = tbl_news.user_id 
-        WHERE status = '1'  ORDER BY id  DESC "
-    );
-    $select_stmt->execute();
-
-    $response = array();
-    $response['result'] = array();
-
-    while ($row = $select_stmt->fetch(PDO::FETCH_ASSOC)) {
-        extract($row);
-
-        $c_time = DateThai($row['create_at']);
-
-        $data_items = array(
-            "id" => $id,
-            "name" => $name,
-            "type" => $type,
-            "detail" => $detail,
-            "url" => $url,
-            "user_id" => $user_name,
-            "image" => $image,
-            "date" => $c_time,
+        WHERE id = '" . $_GET["id"] . "'"
         );
-        array_push($response['result'], $data_items);
+        $stmt->execute();
+
+        $response = array();
+        $response['result'] = array();
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            extract($row);
+            $c_time = DateThai($row['create_at']);
+
+            $data_items = array(
+                "id" => $id,
+                "name" => $name,
+                "type" => $type,
+                "detail" => $detail,
+                "url" => $url,
+                "user_id" => $user_name,
+                "image" => $image,
+                "date" => $c_time,
+            );
+            array_push($response['result'], $data_items);
+        }
+        echo json_encode($response);
+        http_response_code(200);
     }
-    echo json_encode($response);
-    http_response_code(200);
 } else {
     http_response_code(405);
 }

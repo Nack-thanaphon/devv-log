@@ -2,7 +2,7 @@ $('#profile').click(function() { // เรียกใช้งาน แก้�
     let salt = $("#profile_id").val();
 
     $.ajax({
-        url: "../../services/User/update.php",
+        url: "../services/User/update.php",
         method: "GET",
         data: {
             salt: salt
@@ -33,7 +33,7 @@ $("#setting").click(function() {
     $.ajax({
         type: "GET",
         dataType: "json",
-        url: "../../services/user/update.php",
+        url: "../services/user/update.php",
         data: {
             salt: salt,
         },
@@ -61,7 +61,7 @@ $("#setting").click(function() {
 //     $.ajax({
 //         type: "GET",
 //         dataType: "json",
-//         url: "../../services/user/update.php",
+//         url: "../services/user/update.php",
 //         data: {
 //             salt: salt,
 //         },

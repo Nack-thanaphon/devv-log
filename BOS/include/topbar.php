@@ -68,7 +68,7 @@
         $.ajax({
             type: "GET",
             dataType: "json",
-            url: "../../services/User/update.php",
+            url: "../services/User/update.php",
             data: {
                 salt: salt,
             },

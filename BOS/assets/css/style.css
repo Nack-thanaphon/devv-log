@@ -7,12 +7,16 @@ html {
 
 :root {
     --main: #0077B6;
-    --secound: #10AF8B;
+    --secound: #1D5671;
     --third: #1D5671;
     --forth: #fefefe;
     --font1: 1.5rem;
 }
 
+.bg-primary,.btn-primary{
+    background-color: #1D5671 !important;
+    border: #0077B6 !important;
+}
 
 .label_dashboard {
     background-color: #0077B6 !important;

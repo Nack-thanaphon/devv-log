@@ -1,5 +1,5 @@
 <?php
-require_once '../database/connect.php';
+require_once '../bos/database/connect.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 

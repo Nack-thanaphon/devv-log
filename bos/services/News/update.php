@@ -5,7 +5,7 @@ include "../../database/connect.php";
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
     if (isset($_GET["id"])) {
-        $stmt =  $conn->prepare("SELECT * FROM tbl_news WHERE n_id = '" . $_GET["id"] . "'");
+        $stmt =  $conn->prepare("SELECT * FROM tbl_news WHERE id = '" . $_GET["id"] . "'");
         $stmt->execute();
         $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -22,21 +22,21 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     $detail = $_POST['detail'];
     $date = $_POST['date'];
     $date_create = $_POST['date_create'];
-    
 
 
-    $query = " UPDATE tbl_news SET `n_name` = '" . $name . "', 
-    `n_type` = '" . $type . "', 
+
+    $query = " UPDATE tbl_news SET `name` = '" . $name . "', 
+    `type` = '" . $type . "', 
     `url` = '" . $url . "', 
-    `n_image` = '" . $image . "', 
-    `n_detail` = '" . $detail . "',
-    `n_date` = '" . $date . "',
+    `image` = '" . $image . "', 
+    `detail` = '" . $detail . "',
+    `date` = '" . $date . "',
     `create_at` = '" . $date_create . "'
 
   
 
     
-    WHERE n_id = '" . $id . "' ";
+    WHERE id = '" . $id . "' ";
     $stmt = $conn->prepare($query);
     $stmt->execute();
 

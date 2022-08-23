@@ -1,4 +1,5 @@
 <?php
+include "../../database/connect.php";
 
 if (isset($_FILES['files']) && !empty($_FILES['files'])) {
     $no_files = count($_FILES["files"]['name']);
