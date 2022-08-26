@@ -2,8 +2,8 @@
 include "../include/header.php";
 include "../database/connect.php";
 
-// checking user logged or not
-if (empty($_SESSION['user'])) {
+// checking users logged or not
+if (empty($_SESSION['users'])) {
     header('location: index.php');
 }
 ?>
@@ -22,7 +22,7 @@ if (empty($_SESSION['user'])) {
                 </ul>
             </nav>
             <div class="container-fluid">
-                <?php include "./user/user_manager.php" ?>
+                <?php include "./user/users_manager.php" ?>
                 <?php include "../include/footer.php"; ?>
 
             </div>
@@ -33,28 +33,28 @@ if (empty($_SESSION['user'])) {
     <?php include "../include/script.php"; ?>
     <script>
         $(function() { // เรียกใช้งาน datatable
-            // var myModal = new bootstrap.Modal(document.getElementById('detail_user'))
+            // var myModal = new bootstrap.Modal(document.getElementById('detail_users'))
             // myModal.show()
             $.ajax({
                 type: "GET",
                 dataType: "JSON",
-                url: "../services/User/",
+                url: "../services/users/",
                 data: {},
             }).done(function(data) {
                 let tableData = []
                 data = data.result;
                 for (var i = 0; i < data.length; i++) {
                     tableData.push([
-                        ` <button  type="button" class="btn btn-outline-primary p-1" id="d-user" data-toggle="modal" value="${data[i].salt}" >${data[i].id}
+                        ` <button  type="button" class="btn btn-outline-primary p-1" id="d-users" data-toggle="modal" value="${data[i].salt}" >${data[i].id}
                     </button>`,
                         `${data[i].name}`,
                         `${data[i].position}`,
                         `${data[i].status}`,
-                        `<input class="toggle-event"  id="toggle_user${data[i].id}" data-id="${data[i].id}" type="checkbox" name="status" 
+                        `<input class="toggle-event"  id="toggle_users${data[i].id}" data-id="${data[i].id}" type="checkbox" name="status" 
                 ${data[i].u_status ? 'checked' : ''} data-toggle="toggle" data-on="เปิด" 
                         data-off="ปิด" data-onstyle="success" data-style="ios">`,
                         `<div class="btn-group" role="group">
-                        <button type="button" class="btn btn-warning"  id="edit-user"  data-id="${data[i].salt}">
+                        <button type="button" class="btn btn-warning"  id="edit-users"  data-id="${data[i].salt}">
                             <i class="far fa-edit"></i> แก้ไข
                         </button>
                         <button type="button" class="btn btn-danger" id="delete" data-id="${data[i].id}">
@@ -76,7 +76,7 @@ if (empty($_SESSION['user'])) {
             })
 
             function initDataTables(tableData) { // สร้าง datatable
-                $('#user_tbl').DataTable({
+                $('#users_tbl').DataTable({
                     data: tableData,
                     columns: [{
                             title: "ลำดับที่",
@@ -135,7 +135,7 @@ if (empty($_SESSION['user'])) {
                                 if (result.isConfirmed) {
                                     $.ajax({
                                         type: "POST",
-                                        url: "../services/User/ck_delete.php",
+                                        url: "../services/users/ck_delete.php",
 
                                         data: {
                                             id: id
@@ -181,16 +181,16 @@ if (empty($_SESSION['user'])) {
                 })
             }
         })
-        $('#user_email').on('change', function() {
+        $('#users_email').on('change', function() {
 
-            let email = $('#user_email').val()
+            let email = $('#users_email').val()
             $('#ck_email').removeClass()
             $('#ck_email').hide()
 
 
 
             $.ajax({
-                url: "../services/User/ck_email.php",
+                url: "../services/users/ck_email.php",
                 method: "GET",
                 dataType: "JSON",
                 data: {
@@ -214,23 +214,23 @@ if (empty($_SESSION['user'])) {
 
 
 
-        $('#reuser_password').change(function() {
+        $('#reusers_password').change(function() {
 
-            let password = $("#reuser_password").val();
+            let password = $("#reusers_password").val();
             if (password != "") {
-                $("#create_user").attr('disabled', false);
+                $("#create_users").attr('disabled', false);
             } else {
-                $("#create_user").attr('disabled', true);
+                $("#create_users").attr('disabled', true);
             }
         })
 
 
-        $(document).on('click', '#edit-user', function() { // เรียกใช้งาน แก้ไขข้อมูล (MOdal previews)
+        $(document).on('click', '#edit-users', function() { // เรียกใช้งาน แก้ไขข้อมูล (MOdal previews)
             let salt = $(this).data('id');
 
 
             $.ajax({
-                url: "../services/User/update.php",
+                url: "../services/users/update.php",
                 method: "GET",
                 data: {
                     salt: salt
@@ -238,22 +238,22 @@ if (empty($_SESSION['user'])) {
                 dataType: "json",
                 success: function(data) {
                     data = data.result;
-                    $('#euser_id').val(data[0].salt);
+                    $('#eusers_id').val(data[0].salt);
                     $('#efull_name').val(data[0].name);
-                    $('#euser_name').val(data[0].username);
-                    $('#euser_email').val(data[0].email);
-                    $('#euser_role_id').val(data[0].position);
-                    $('#e_user').modal('show');
+                    $('#eusers_name').val(data[0].usersname);
+                    $('#eusers_email').val(data[0].email);
+                    $('#eusers_role_id').val(data[0].position);
+                    $('#e_users').modal('show');
                 }
             });
         });
 
-        $(document).on('click', '#create_user', function() {
+        $(document).on('click', '#create_users', function() {
 
-            var password = $("#user_password").val();
-            var repassword = $("#reuser_password").val();
+            var password = $("#users_password").val();
+            var repassword = $("#reusers_password").val();
             if (password != repassword) {
-                $('#reuser_password').css('border', '1px solid red');
+                $('#reusers_password').css('border', '1px solid red');
                 $('#msg').html('(*รหัสผ่านจำเป็นต้องตรงกัน)')
                 Swal.fire({
                     icon: 'error',
@@ -264,16 +264,16 @@ if (empty($_SESSION['user'])) {
             } else {
                 event.preventDefault();
                 $.ajax({
-                    url: "../services/User/ck_create.php",
+                    url: "../services/users/ck_create.php",
                     method: "POST",
                     dataType: "JSON",
                     data: {
 
                         fullname: $("#full_name").val(),
-                        password: MD5($("#user_password").val()),
-                        username: $("#user_name").val(),
-                        email: $("#user_email").val(),
-                        position: $("#user_role_id").val(),
+                        password: MD5($("#users_password").val()),
+                        usersname: $("#users_name").val(),
+                        email: $("#users_email").val(),
+                        position: $("#users_role_id").val(),
                     },
                     success: function(data) {
                         Swal.fire({
@@ -290,28 +290,28 @@ if (empty($_SESSION['user'])) {
         });
 
 
-        $('#ereuser_password').change(function() {
+        $('#ereusers_password').change(function() {
 
-            let password = $("#ereuser_password").val();
+            let password = $("#ereusers_password").val();
             if (password != "") {
-                $("#edit_user").attr('disabled', false);
+                $("#edit_users").attr('disabled', false);
             } else {
-                $("#edit_user").attr('disabled', true);
+                $("#edit_users").attr('disabled', true);
             }
         })
 
-        $('#edit_user').on('click', function(e) { // เรียกใช้งาน [บันทึกข้อมูลแก้ไข] (สำคัญ)
+        $('#edit_users').on('click', function(e) { // เรียกใช้งาน [บันทึกข้อมูลแก้ไข] (สำคัญ)
             event.preventDefault();
             $.ajax({
                 type: "POST",
                 dataType: "JSON",
-                url: "../services/User/update.php",
+                url: "../services/users/update.php",
                 data: {
-                    salt: $('#euser_id').val(),
+                    salt: $('#eusers_id').val(),
                     fullname: $("#efull_name").val(),
-                    username: $("#euser_name").val(),
-                    email: $("#euser_email").val(),
-                    position: $("#euser_role_id").val(),
+                    usersname: $("#eusers_name").val(),
+                    email: $("#eusers_email").val(),
+                    position: $("#eusers_role_id").val(),
                 },
                 success: function(response) {
                     Swal.fire({
@@ -546,7 +546,7 @@ if (empty($_SESSION['user'])) {
                     confirmButtonText: 'ตกลง',
                 }).then((result) => {
                     $.ajax({
-                        url: "../services/User/ck_status.php",
+                        url: "../services/users/ck_status.php",
                         method: "POST",
                         data: {
                             id: id,

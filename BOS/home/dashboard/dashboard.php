@@ -9,7 +9,7 @@ include "../../bos/function/function.php"
                 <h1><?php echo count_total_user($conn); ?></h1>
             </div>
             <div class="panel-footer bg-secondary py-2">
-                <a href="././user.php" class="small-box-footer py-3  text-white opacity-50"> คลิกจัดการระบบ <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="././users.php" class="small-box-footer py-3  text-white opacity-50"> คลิกจัดการระบบ <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
     </div>

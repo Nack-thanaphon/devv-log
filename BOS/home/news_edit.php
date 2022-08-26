@@ -126,7 +126,7 @@ include "../include/header.php";
             var id = baseUrl.substring(baseUrl.lastIndexOf('=') + 1);
 
             $.ajax({
-                url: "../services/News/update.php",
+                url: "../services/news/update.php",
                 method: "GET",
                 data: {
                     id: id
@@ -162,7 +162,7 @@ include "../include/header.php";
             $.ajax({
                 type: "POST",
                 dataType: "JSON",
-                url: "../services/News/update.php",
+                url: "../services/news/update.php",
                 data: {
                     id: $('#eid').val(),
                     name: $("#ename").val(),
@@ -232,7 +232,7 @@ include "../include/header.php";
 
             $.ajax({
                 // url: './api/uploadfile.php', // point to server-side PHP script 
-                url: '../services/News/uploadfile.php', // point to server-side PHP script
+                url: '../services/news/uploadfile.php', // point to server-side PHP script
                 dataType: 'text', // what to expect back from the PHP script
                 cache: false,
                 contentType: false,
@@ -277,7 +277,7 @@ include "../include/header.php";
                     confirmButtonText: 'ตกลง',
                 }).then((result) => {
                     $.ajax({
-                        url: "../services/News/status.php",
+                        url: "../services/news/status.php",
                         method: "POST",
                         data: {
                             id: id,

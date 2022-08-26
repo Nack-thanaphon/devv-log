@@ -10,7 +10,7 @@ include "../../bos/function/function.php"
                 <div class="row  mx-auto">
                     <div class="col-lg-12  ">
                         <h4>
-                            <i class="fas fa-user-edit text-primary"></i>
+                            <i class="fas fa-users-edit text-primary"></i>
                             อัพเดตข้อมูลส่วนตัว
                         </h4>
                         <small>หน่วยงานสุขภาพอาเซียน มหาวิทยาลัยมหิดล</small>
@@ -21,7 +21,7 @@ include "../../bos/function/function.php"
 
             </div>
 
-            <form id="edit_userform" enctype="multipart/form-data">
+            <form id="edit_usersform" enctype="multipart/form-data">
                 <div class="row py-3 p-0 m-0">
                     <div class="col-12 col-md-4 m-auto">
                         <!-- <div class="container"> -->
@@ -46,7 +46,7 @@ include "../../bos/function/function.php"
                                 <div class="col-12  col-md-6 p-0 m-0 py-1">
                                     <div class="form-group">
                                         <p class="text-primary">ตำแหน่งผู้ใช้งาน :</p>
-                                        <p class="text-dark text-uppercase" id="duser_role_id"></p>
+                                        <p class="text-dark text-uppercase" id="dusers_role_id"></p>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6 p-0 m-0 py-1">
@@ -60,13 +60,13 @@ include "../../bos/function/function.php"
                                 <div class="col-12  col-md-6 p-0 m-0 py-1">
                                     <div class="form-group">
                                         <p class="text-primary">อีเมลผู้ใช้งาน :</p>
-                                        <p class="text-dark" id="duser_email"></p>
+                                        <p class="text-dark" id="dusers_email"></p>
                                     </div>
                                 </div>
                                 <div class="col-12  col-md-6 p-0 m-0 py-1">
                                     <div class="form-group">
                                         <p class="text-primary">ชื่อผู้ใช้งาน :</p>
-                                        <p class="text-dark" id="duser_name"></p>
+                                        <p class="text-dark" id="dusers_name"></p>
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@ include "../../bos/function/function.php"
                                 <div class=" col-6 p-0 m-0 py-1">
                                     <div class="form-group">
                                         <p class="text-primary">ลงทะเบียนวันที่ :</p>
-                                        <p class="text-dark" id="duser_date"></p>
+                                        <p class="text-dark" id="dusers_date"></p>
                                     </div>
                                 </div>
                                 <div class=" col-6 p-0 m-0 py-1">
@@ -88,7 +88,7 @@ include "../../bos/function/function.php"
                             <hr>
 
                             <div class="col-12 mx-auto py-2">
-                                <input id="duser_id" type="hidden" name="p_salt">
+                                <input id="dusers_id" type="hidden" name="p_salt">
                                 <div class="row">
                                     <div class="col-4">
                                         <a href="./" class="btn btn-danger w-100">Back

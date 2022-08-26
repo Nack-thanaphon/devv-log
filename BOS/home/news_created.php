@@ -107,7 +107,7 @@ include "../include/header.php";
 
                                     </div>
                                 </div>
-                                <input type="hidden" name="user_id" value="<?php echo $_SESSION['user']['id'] ?>" />
+                                <input type="hidden" name="users_id" value="<?php echo $_SESSION['users']['id'] ?>" />
                                 <button type="submit" id="news_save" class="btn btn-primary btn-block mx-auto w-75" name="submit">บันทึกข้อมูล</button>
                             </div>
                         </form>
@@ -122,8 +122,11 @@ include "../include/header.php";
     </div>
 
     <script>
+<<<<<<< Updated upstream
     
 
+=======
+>>>>>>> Stashed changes
         $('#formData').on('submit', function(e) { // เรียกใช้งาน เพิ่มข้อมูล (สำคัญ)
 
 
@@ -151,7 +154,7 @@ include "../include/header.php";
                 e.preventDefault()
                 $.ajax({
                     type: 'POST',
-                    url: "../services/News/create.php",
+                    url: "../services/news/create.php",
                     data: $('#formData').serialize()
 
                 }).done(function(resp) {
@@ -218,7 +221,7 @@ include "../include/header.php";
 
             $.ajax({
                 // url: './api/uploadfile.php', // point to server-side PHP script 
-                url: '../services/News/uploadfile.php', // point to server-side PHP script
+                url: '../services/news/uploadfile.php', // point to server-side PHP script
                 dataType: 'text', // what to expect back from the PHP script
                 cache: false,
                 contentType: false,
@@ -246,7 +249,7 @@ include "../include/header.php";
 
             $.ajax({
                 // url: './api/uploadfile.php', // point to server-side PHP script 
-                url: '../services/News/uploadfile.php', // point to server-side PHP script
+                url: '../services/news/uploadfile.php', // point to server-side PHP script
                 dataType: 'text', // what to expect back from the PHP script
                 cache: false,
                 contentType: false,
@@ -302,7 +305,7 @@ include "../include/header.php";
                     confirmButtonText: 'ตกลง',
                 }).then((result) => {
                     $.ajax({
-                        url: "../services/News/status.php",
+                        url: "../services/news/status.php",
                         method: "POST",
                         data: {
                             id: id,

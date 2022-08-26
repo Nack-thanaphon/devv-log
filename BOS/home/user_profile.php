@@ -2,8 +2,8 @@
 include "../include/header.php";
 include "../database/connect.php";
 
-// checking user logged or not
-if (empty($_SESSION['user'])) {
+// checking users logged or not
+if (empty($_SESSION['users'])) {
     header('location: index.php');
 }
 ?>
@@ -22,7 +22,7 @@ if (empty($_SESSION['user'])) {
                 </ul>
             </nav>
             <div class="container-fluid">
-                <?php include "./user/user_profile.php" ?>
+                <?php include "./users/users_profile.php" ?>
                 <?php include "../include/footer.php"; ?>
                 <?php include "../include/script.php"; ?>
             </div>
@@ -36,7 +36,7 @@ if (empty($_SESSION['user'])) {
             $.ajax({
                 type: "GET",
                 dataType: "json",
-                url: "../services/User/update.php",
+                url: "../services/users/update.php",
                 data: {
                     salt: salt,
                 },
@@ -54,12 +54,12 @@ if (empty($_SESSION['user'])) {
                         $('#profile_pic').attr('src', '../../uploads/profile/no_img.png');
 
                     }
-                    $('#duser_id').val(data[0].salt);
+                    $('#dusers_id').val(data[0].salt);
                     $('#dfull_name').html(data[0].name);
-                    $('#duser_name').html(data[0].username);
-                    $('#duser_date').html(data[0].date);
-                    $('#duser_email').html(data[0].email);
-                    $('#duser_role_id').html(data[0].positioname);
+                    $('#dusers_name').html(data[0].usersname);
+                    $('#dusers_date').html(data[0].date);
+                    $('#dusers_email').html(data[0].email);
+                    $('#dusers_role_id').html(data[0].positioname);
                     $('#status').html(data[0].status);
                     console.log("good", data)
                 },
@@ -73,12 +73,12 @@ if (empty($_SESSION['user'])) {
 
 
 
-        $('#edit_userform').on('submit', function(e) { // เรียกใช้งาน เพิ่มข้อมูล (สำคัญ)
+        $('#edit_usersform').on('submit', function(e) { // เรียกใช้งาน เพิ่มข้อมูล (สำคัญ)
 
             e.preventDefault();
             $.ajax({
                 type: 'POST',
-                url: "../services/User/profile.php",
+                url: "../services/users/profile.php",
                 data: new FormData(this),
                 contentType: false,
                 cache: false,

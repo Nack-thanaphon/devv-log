@@ -59,7 +59,7 @@ include "../include/header.php";
             $.ajax({
                 type: "GET",
                 dataType: "JSON",
-                url: "../services/News/",
+                url: "../services/news/",
                 data: {},
             }).done(function(data) {
                 let tableData = []
@@ -148,7 +148,7 @@ include "../include/header.php";
                                 if (result.isConfirmed) {
                                     $.ajax({
                                         type: "POST",
-                                        url: "../services/News/delete.php",
+                                        url: "../services/news/delete.php",
 
                                         data: {
                                             id: id
@@ -225,7 +225,7 @@ include "../include/header.php";
                 e.preventDefault()
                 $.ajax({
                     type: 'POST',
-                    url: "../services/News/create.php",
+                    url: "../services/news/create.php",
                     data: $('#formData').serialize()
 
                 }).done(function(resp) {
@@ -249,7 +249,7 @@ include "../include/header.php";
         $(document).on('click', '.edit_data', function() { // เรียกใช้งาน แก้ไขข้อมูล (MOdal previews)
             let id = $(this).data('id');
             $.ajax({
-                url: "../services/News/update.php",
+                url: "../services/news/update.php",
                 method: "GET",
                 data: {
                     id: id
@@ -282,7 +282,7 @@ include "../include/header.php";
             $.ajax({
                 type: "POST",
                 dataType: "JSON",
-                url: "../services/News/update.php",
+                url: "../services/news/update.php",
                 data: {
                     id: $('#eid').val(),
                     name: $("#ename").val(),
@@ -331,7 +331,7 @@ include "../include/header.php";
                     confirmButtonText: 'ตกลง',
                 }).then((result) => {
                     $.ajax({
-                        url: "../services/News/status.php",
+                        url: "../services/news/status.php",
                         method: "POST",
                         data: {
                             id: id,
